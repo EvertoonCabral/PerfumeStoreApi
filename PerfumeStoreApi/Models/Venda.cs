@@ -11,8 +11,11 @@ public class Venda
     public DateTime DataVenda { get; set; }
     [Required]
     public decimal ValorTotal { get; set; }
-    public List<ItemVenda> Itens { get; set; } = new();
-    public List<Pagamento> Pagamentos { get; set; } = new();
+    
+    public virtual ICollection<ItemVenda> Itens { get; set; } = new List<ItemVenda>();
+    public virtual ICollection<Pagamento> Pagamentos { get; set; } = new List<Pagamento>();
+
+    
     public int ClienteId { get; set; }
     public virtual Cliente Cliente { get; set; }
 }

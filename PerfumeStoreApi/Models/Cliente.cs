@@ -17,5 +17,5 @@ public class Cliente
     
     public bool IsAtivo { get; set; } = false;
 
-    public ICollection<Venda> Vendas { get; set; }
+    public virtual ICollection<Venda> Vendas { get; set; }
 }
