@@ -10,20 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Context/AppDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Cliente.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/ItemVenda.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Pagamento.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Produto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,28 +24,34 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6f90c6c13479b8c2a5be98f3d75dfc3bd885a055652d8a32904ca2448132949e/Future.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Projetos .NET/OSProject/PerfumeStoreApi/PerfumeStoreApi/Models/Cliente.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Projetos .NET/OSProject/PerfumeStoreApi/PerfumeStoreApi/Models/Pagamento.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2wL5mR35l6BsMReG6WA4AnS25O4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PerfumeStoreApi: IIS Express">
     <configuration name="PerfumeStoreApi: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" />
@@ -117,27 +114,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs</url>
-          <line>13</line>
-          <properties documentPath="D:\Projetos .NET\OSProject\PerfumeStoreApi\PerfumeStoreApi\Models\Venda.cs" containingFunctionPresentation="Property 'Pagamentos'">
-            <startOffsets>
-              <option value="355" />
-            </startOffsets>
-            <endOffsets>
-              <option value="359" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
