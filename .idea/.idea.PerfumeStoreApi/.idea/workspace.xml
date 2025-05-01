@@ -10,11 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Cliente.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +23,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6f90c6c13479b8c2a5be98f3d75dfc3bd885a055652d8a32904ca2448132949e/Future.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/Projetos .NET/OSProject/PerfumeStoreApi/PerfumeStoreApi/Models/Cliente.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projetos .NET/OSProject/PerfumeStoreApi/PerfumeStoreApi/Models/Pagamento.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProjectColorInfo">{
@@ -41,6 +36,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.PerfumeStoreApi: https.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -49,10 +45,11 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderNuGetOptionsPageId&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.PerfumeStoreApi: IIS Express">
+  <component name="RunManager" selected=".NET Launch Settings Profile.PerfumeStoreApi: https">
     <configuration name="PerfumeStoreApi: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -108,6 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745808173186</updated>
       <workItem from="1745808174409" duration="1474000" />
+      <workItem from="1746060250557" duration="2476000" />
     </task>
     <servers />
   </component>

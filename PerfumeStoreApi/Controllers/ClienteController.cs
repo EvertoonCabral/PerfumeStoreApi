@@ -20,15 +20,75 @@ public class ClienteController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Cliente>>> RetornaClientes()
     {
-        var clientes = _context.Clientes.ToListAsync();
+        var clientes =  await _context.Clientes.ToListAsync();
 
         if (clientes == null)
+        {
+            return  NotFound("Nenhum cliente encontrado");
+        }
+        
+        return clientes;
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Cliente>> RetornaClientePorId(int id)
+    {
+        var cliente = await _context.Clientes.FindAsync(id);
+
+        if (cliente is null)
+        {
+            return NotFound("Nenhum cliente encontrado");            
+        }
+        return cliente;
+
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Cliente>> AtualizaCliente(int id, Cliente cliente)
+    {
+        
+        var cli = await _context.Clientes.FindAsync(id);
+
+        if (cli is null)
         {
             return NotFound("Nenhum cliente encontrado");
         }
         
-        return clientes.Result;
+        _context.Entry(cliente).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        
+        return cliente;
+        
     }
+
+    [HttpPost]
+    public async Task<ActionResult<Cliente>> CriarCliente(Cliente cliente)
+    {
+        _context.Clientes.Add(cliente);
+
+         await _context.SaveChangesAsync();
+         
+         
+         return CreatedAtAction(nameof(RetornaClientePorId), new { id = cliente.Id }, cliente);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<Cliente>> ExcluirCliente(int id)
+    {
+        
+        var cliente = await _context.Clientes.FindAsync(id);
+
+        if (cliente is null)
+        {
+            return NotFound("Nenhum cliente encontrado");
+        }
+        
+        _context.Clientes.Remove(cliente);
+        await _context.SaveChangesAsync();
+        
+        return Ok(cliente);
+    }
+    
     
     
 }
