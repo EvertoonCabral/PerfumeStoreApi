@@ -26,7 +26,7 @@ public class ClienteController : ControllerBase
         {
             return  NotFound("Nenhum cliente encontrado");
         }
-        
+        //Criar Dto para retornar os clientes sem a listagem de venda, pagamentos e item venda.
         return clientes;
     }
 
