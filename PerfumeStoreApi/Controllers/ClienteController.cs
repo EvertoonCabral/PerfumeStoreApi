@@ -4,6 +4,7 @@ using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Context.Dtos;
 using AutoMapper;
+using PerfumeStoreApi.UnitOfWork;
 
 namespace PerfumeStoreApi.Controllers;
 
@@ -11,19 +12,18 @@ namespace PerfumeStoreApi.Controllers;
 [Route("api/[controller]")]
 public class ClienteController : ControllerBase
 {
-    private readonly AppDbContext _context;
     private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public ClienteController(AppDbContext context, IMapper mapper)
+    public ClienteController( IMapper mapper)
     {
-        _context = context;
         _mapper = mapper;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ClienteDto>>> RetornaClientes()
+    public ActionResult<IEnumerable<ClienteDto>> RetornaClientes()
     {
-        var clientes = await _context.Clientes.ToListAsync();
+        var clientes =  _unitOfWork.ClienteRepository.GetAll();
 
         if (clientes == null || !clientes.Any())
         {
@@ -34,9 +34,9 @@ public class ClienteController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ClienteDto>> RetornaClientePorId(int id)
+    public ActionResult<ClienteDto> RetornaClientePorId(int id)
     {
-        var cliente = await _context.Clientes.FindAsync(id);
+        var cliente =  _unitOfWork.ClienteRepository.GetById(id);
 
         if (cliente is null)
         {
@@ -47,12 +47,10 @@ public class ClienteController : ControllerBase
     }
 
     [HttpGet("{id}/detalhes")]
-    public async Task<ActionResult<ClienteDetalhesDto>> RetornaClienteDetalhes(int id)
+    public ActionResult<ClienteDetalhesDto> RetornaClienteDetalhes(int id)
     {
-        var cliente = await _context.Clientes
-            .Include(c => c.Vendas)
-            .FirstOrDefaultAsync(c => c.Id == id);
-
+        var cliente = _unitOfWork.ClienteRepository.RetornaClienteDetalhes(id);
+            
         if (cliente is null)
         {
             return NotFound("Nenhum cliente encontrado");            
@@ -62,9 +60,9 @@ public class ClienteController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<ClienteDto>> AtualizaCliente(int id, ClienteCreateUpdateDto clienteDto)
+    public ActionResult<ClienteDto> AtualizaCliente(int id, ClienteCreateUpdateDto clienteDto)
     {
-        var cliente = await _context.Clientes.FindAsync(id);
+        var cliente =  _unitOfWork.ClienteRepository.GetById(id);
 
         if (cliente is null)
         {
@@ -74,8 +72,7 @@ public class ClienteController : ControllerBase
         // Mapeia os valores do DTO para a entidade existente
         _mapper.Map(clienteDto, cliente);
         
-        await _context.SaveChangesAsync();
-        
+        _unitOfWork.Commit();        
         return _mapper.Map<ClienteDto>(cliente);
     }
 
@@ -84,8 +81,8 @@ public class ClienteController : ControllerBase
     {
         var cliente = _mapper.Map<Cliente>(clienteDto);
         
-        _context.Clientes.Add(cliente);
-        await _context.SaveChangesAsync();
+        _unitOfWork.ClienteRepository.Create(cliente);
+        _unitOfWork.Commit();
         
         var novoClienteDto = _mapper.Map<ClienteDto>(cliente);
         
@@ -93,17 +90,17 @@ public class ClienteController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<ClienteDto>> ExcluirCliente(int id)
+    public ActionResult<ClienteDto> ExcluirCliente(int id)
     {
-        var cliente = await _context.Clientes.FindAsync(id);
+        var cliente = _unitOfWork.ClienteRepository.GetById(id);
 
         if (cliente is null)
         {
             return NotFound("Nenhum cliente encontrado");
         }
         
-        _context.Clientes.Remove(cliente);
-        await _context.SaveChangesAsync();
+        _unitOfWork.ClienteRepository.Delete(cliente);
+        _unitOfWork.Commit();      
         
         return Ok(_mapper.Map<ClienteDto>(cliente));
     }

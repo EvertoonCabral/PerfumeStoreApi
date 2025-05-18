@@ -10,10 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/IRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Repository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ClienteRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/IUnitOfWork.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/UnitOfWork.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/IClienteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/IClienteRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +117,7 @@
       <workItem from="1746068376427" duration="150000" />
       <workItem from="1746069709623" duration="1204000" />
       <workItem from="1746144477296" duration="6481000" />
-      <workItem from="1747542260504" duration="813000" />
+      <workItem from="1747542260504" duration="2746000" />
     </task>
     <servers />
   </component>

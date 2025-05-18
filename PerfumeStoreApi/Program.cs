@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
 using AutoMapper;
 using PerfumeStoreApi.Repository;
+using PerfumeStoreApi.UnitOfWork;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,8 +26,9 @@ builder.Services.AddControllers()
 
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<ClienteRepository, ClienteRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 builder.Services.AddEndpointsApiExplorer();
