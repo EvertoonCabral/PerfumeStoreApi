@@ -10,17 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ClienteGetDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ClienteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ClienteRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/IClienteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/IClienteRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/IRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/IRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Repository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Repository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/IUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/IUnitOfWork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/UnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/UnitOfWork.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +117,7 @@
       <workItem from="1747542260504" duration="4065000" />
       <workItem from="1747593056365" duration="60000" />
       <workItem from="1749690111072" duration="780000" />
-      <workItem from="1749690936680" duration="2248000" />
+      <workItem from="1749690936680" duration="2843000" />
     </task>
     <servers />
   </component>
@@ -154,26 +146,26 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs</url>
-          <line>86</line>
+          <line>87</line>
           <properties documentPath="D:\Projetos .NET\OSProject\PerfumeStoreApi\PerfumeStoreApi\Controllers\ClienteController.cs" containingFunctionPresentation="Method 'CriarCliente'">
             <startOffsets>
-              <option value="2537" />
+              <option value="2595" />
             </startOffsets>
             <endOffsets>
-              <option value="2603" />
+              <option value="2661" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs</url>
-          <line>81</line>
+          <line>82</line>
           <properties documentPath="D:\Projetos .NET\OSProject\PerfumeStoreApi\PerfumeStoreApi\Controllers\ClienteController.cs" containingFunctionPresentation="Method 'CriarCliente'">
             <startOffsets>
-              <option value="2369" />
+              <option value="2427" />
             </startOffsets>
             <endOffsets>
-              <option value="2416" />
+              <option value="2474" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />

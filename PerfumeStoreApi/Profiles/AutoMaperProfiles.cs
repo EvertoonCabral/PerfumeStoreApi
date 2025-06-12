@@ -9,13 +9,12 @@ public class AutoMaperProfiles : Profile
         public AutoMaperProfiles()
         {
                       
-                // Cliente -> ClienteDTO
-                CreateMap<Cliente, ClienteDto>();
-                // Cliente -> ClienteDetalhesDTO
-                CreateMap<Cliente, ClienteDetalhesDto>();
-                // Venda -> VendaResumoDTO
-                CreateMap<Venda, VendaResumoDto>();
-                // ClienteCreateUpdateDTO -> Cliente
-                CreateMap<ClienteCreateUpdateDto, Cliente>().ReverseMap();  
+                CreateMap<Cliente, ClienteDto>().ReverseMap();
+                CreateMap<Cliente, ClienteCreateUpdateDto>().ReverseMap();
+                CreateMap<Cliente, ClienteDetalhesDto>()
+                        .ForMember(dest => dest.Vendas, opt => opt.MapFrom(src => src.Vendas))
+                        .ReverseMap();
+                CreateMap<Venda, VendaResumoDto>().ReverseMap();
+
         }
 }

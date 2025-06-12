@@ -15,9 +15,10 @@ public class ClienteController : ControllerBase
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
 
-    public ClienteController( IMapper mapper)
+    public ClienteController( IMapper mapper, IUnitOfWork unitOfWork)
     {
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
