@@ -6,7 +6,7 @@ namespace PerfumeStoreApi.UnitOfWork;
 public class UnitOfWork : IUnitOfWork
 {
     private IClienteRepository _clienteRepo;
-    public AppDbContext _context { get; }
+    private readonly AppDbContext _context; // Modificado para readonly
 
 
     public UnitOfWork(AppDbContext context)
@@ -25,6 +25,13 @@ public class UnitOfWork : IUnitOfWork
     {
      _context.SaveChanges();   
     }
+
+    public async Task CommitAsync()
+    {
+        await _context.SaveChangesAsync();  
+        
+    }
+
     public void Dispose()
     {
         _context.Dispose();

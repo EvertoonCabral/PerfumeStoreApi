@@ -6,5 +6,5 @@ namespace PerfumeStoreApi.Repository;
 
 public interface IClienteRepository : IRepository<Cliente>
 {
-    public ActionResult<ClienteDetalhesDto> RetornaClienteDetalhes(int id);
+    public Task<ActionResult<ClienteDetalhesDto>> RetornaClienteDetalhesAsync(int id);
 }

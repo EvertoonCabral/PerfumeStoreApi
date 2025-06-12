@@ -21,9 +21,9 @@ public class ClienteController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<ClienteDto>> RetornaClientes()
+    public async Task <ActionResult<IEnumerable<ClienteDto>>> RetornaClientes()
     {
-        var clientes =  _unitOfWork.ClienteRepository.GetAll();
+        var clientes = await _unitOfWork.ClienteRepository.GetAll();
 
         if (clientes == null || !clientes.Any())
         {
@@ -34,9 +34,9 @@ public class ClienteController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public ActionResult<ClienteDto> RetornaClientePorId(int id)
+    public async Task <ActionResult<ClienteDto>> RetornaClientePorId(int id)
     {
-        var cliente =  _unitOfWork.ClienteRepository.GetById(id);
+        var cliente = await _unitOfWork.ClienteRepository.GetById(id);
 
         if (cliente is null)
         {
@@ -47,9 +47,9 @@ public class ClienteController : ControllerBase
     }
 
     [HttpGet("{id}/detalhes")]
-    public ActionResult<ClienteDetalhesDto> RetornaClienteDetalhes(int id)
+    public async Task <ActionResult<ClienteDetalhesDto>> RetornaClienteDetalhes(int id)
     {
-        var cliente = _unitOfWork.ClienteRepository.RetornaClienteDetalhes(id);
+        var cliente = await _unitOfWork.ClienteRepository.RetornaClienteDetalhesAsync(id);
             
         if (cliente is null)
         {
@@ -60,9 +60,9 @@ public class ClienteController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public ActionResult<ClienteDto> AtualizaCliente(int id, ClienteCreateUpdateDto clienteDto)
+    public async  Task<ActionResult<ClienteDto>> AtualizaCliente(int id, ClienteCreateUpdateDto clienteDto)
     {
-        var cliente =  _unitOfWork.ClienteRepository.GetById(id);
+        var cliente =  await _unitOfWork.ClienteRepository.GetById(id);
 
         if (cliente is null)
         {
@@ -72,27 +72,27 @@ public class ClienteController : ControllerBase
         // Mapeia os valores do DTO para a entidade existente
         _mapper.Map(clienteDto, cliente);
         
-        _unitOfWork.Commit();        
+      await  _unitOfWork.CommitAsync();        
         return _mapper.Map<ClienteDto>(cliente);
     }
 
-    [HttpPost]
-    public async Task<ActionResult<ClienteDto>> CriarCliente(ClienteCreateUpdateDto clienteDto)
+    [HttpPost("Criarcliente")]
+    public async Task<ActionResult<ClienteCreateUpdateDto>> CriarCliente(ClienteCreateUpdateDto clienteDto)
     {
         var cliente = _mapper.Map<Cliente>(clienteDto);
         
         _unitOfWork.ClienteRepository.Create(cliente);
-        _unitOfWork.Commit();
+       await _unitOfWork.CommitAsync();
+       
+        var novoClienteDto = _mapper.Map<ClienteCreateUpdateDto>(cliente);
         
-        var novoClienteDto = _mapper.Map<ClienteDto>(cliente);
-        
-        return CreatedAtAction(nameof(RetornaClientePorId), new { id = cliente.Id }, novoClienteDto);
+            return Ok(novoClienteDto);
     }
 
     [HttpDelete("{id}")]
-    public ActionResult<ClienteDto> ExcluirCliente(int id)
+    public async  Task<ActionResult<ClienteDto>> ExcluirClienteAsync(int id)
     {
-        var cliente = _unitOfWork.ClienteRepository.GetById(id);
+        var cliente = await _unitOfWork.ClienteRepository.GetById(id);
 
         if (cliente is null)
         {
@@ -100,7 +100,7 @@ public class ClienteController : ControllerBase
         }
         
         _unitOfWork.ClienteRepository.Delete(cliente);
-        _unitOfWork.Commit();      
+       await _unitOfWork.CommitAsync();      
         
         return Ok(_mapper.Map<ClienteDto>(cliente));
     }

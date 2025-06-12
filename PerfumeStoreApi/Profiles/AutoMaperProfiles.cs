@@ -16,6 +16,6 @@ public class AutoMaperProfiles : Profile
                 // Venda -> VendaResumoDTO
                 CreateMap<Venda, VendaResumoDto>();
                 // ClienteCreateUpdateDTO -> Cliente
-                CreateMap<ClienteCreateUpdateDto, Cliente>();  
+                CreateMap<ClienteCreateUpdateDto, Cliente>().ReverseMap();  
         }
 }

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
 
 namespace PerfumeStoreApi.Repository;
@@ -12,15 +13,15 @@ public class Repository<T> : IRepository<T> where T : class
         _context = context;
     }
     
-    public IEnumerable<T> GetAll()
+    public  async Task <IEnumerable<T>> GetAll()
     {
-        return _context.Set<T>().ToList();
+        return await _context.Set<T>().ToListAsync();
     }
 
-    public T? GetById(int id)
+    public async Task<T?> GetById(int id)
     {
         
-        return _context.Set<T>().Find(id);
+        return await _context.Set<T>().FindAsync(id);
     }
 
     public T Create(T entity)

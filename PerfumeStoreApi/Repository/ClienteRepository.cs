@@ -16,9 +16,9 @@ public class ClienteRepository : Repository<Cliente>, IClienteRepository
     }
 
 
-    public ActionResult<ClienteDetalhesDto> RetornaClienteDetalhes(int id)
+    public async Task<ActionResult<ClienteDetalhesDto>> RetornaClienteDetalhesAsync(int id)
     {
-        var cliente =  _context.Clientes
+        var cliente = await _context.Clientes
             .Include(c => c.Vendas)
             .FirstOrDefaultAsync(c => c.Id == id);
         return _mapper.Map<ClienteDetalhesDto>(cliente);
