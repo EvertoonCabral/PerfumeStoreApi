@@ -22,10 +22,6 @@ public class AppDbContext : DbContext
             .Property(p => p.PrecoVenda)
             .HasPrecision(10, 2);
 
-        modelBuilder.Entity<ItemVenda>()
-            .Property(iv => iv.PrecoUnitario)
-            .HasPrecision(10, 2);
-
         modelBuilder.Entity<Pagamento>()
             .Property(p => p.ValorPago)
             .HasPrecision(10, 2);

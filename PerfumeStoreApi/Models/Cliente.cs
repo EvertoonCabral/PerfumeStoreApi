@@ -15,7 +15,7 @@ public class Cliente
     [Required]
     public string Telefone { get; set; }
     
-    public bool IsAtivo { get; set; } = false;
+    public bool IsAtivo { get; set; } = true;
 
     public virtual ICollection<Venda> Vendas { get; set; }
 }

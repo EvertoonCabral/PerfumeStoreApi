@@ -9,4 +9,5 @@ public class Pagamento
 
     public DateTime DataPagamento { get; set; }     
     public decimal ValorPago { get; set; }
+    public decimal ValorTotal { get; set; }
 }

@@ -1,7 +1,9 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Models;
+using PerfumeStoreApi.UnitOfWork;
 
 namespace PerfumeStoreApi.Controllers;
 
@@ -9,18 +11,17 @@ namespace PerfumeStoreApi.Controllers;
 [ApiController]
 public class ProdutoController : ControllerBase
 {
+    private readonly IUnitOfWork _unitOfWork;
 
-    private readonly AppDbContext _context;
-    
-    public ProdutoController(AppDbContext context)
+    public ProdutoController(IUnitOfWork unitOfWork)
     {
-        _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
     public async Task<ActionResult<ICollection<Produto>>> GetProdutos()
     {
-        var produtos = await _context.Produtos.ToListAsync();
+        var produtos = await _unitOfWork.ProdutoRepository.GetAll();
 
         if (produtos is null)
         {
@@ -28,13 +29,12 @@ public class ProdutoController : ControllerBase
         }
         
         return Ok(produtos);
-        
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Produto>> GetProduto(int id)
     {
-        var produto = await _context.Produtos.FindAsync(id);
+        var produto = await _unitOfWork.ProdutoRepository.GetById(id);
 
         if (produto is null)
         {
@@ -47,16 +47,16 @@ public class ProdutoController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<Produto>> AlterarProduto(int id, Produto produto)
     {
-        
-        var produtoAtualizado = await _context.Produtos.FindAsync(id);
+        var produtoAtualizado = await _unitOfWork.ProdutoRepository.GetById(id);
         
         if (produtoAtualizado is null)
         {
             return NotFound("O produto não foi encontrado");
         }
         
-        _context.Entry(produtoAtualizado).CurrentValues.SetValues(produto);
-        await _context.SaveChangesAsync();
+        // Atualizar usando o repository
+        _unitOfWork.ProdutoRepository.Update(produtoAtualizado, produto);
+        await _unitOfWork.CommitAsync();
         
         return Ok(produtoAtualizado);
     }
@@ -64,32 +64,25 @@ public class ProdutoController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Produto>> CadastrarProduto(Produto produto)
     {
-
-        var novoProduto = await _context.Produtos.AddAsync(produto);
-         _context.SaveChanges();
+        var novoProduto = _unitOfWork.ProdutoRepository.Create(produto);
+        await _unitOfWork.CommitAsync();
         
-        return Ok(novoProduto.Entity);
-        
+        return Ok(novoProduto);
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<Produto>> ExcluirProduto(int id)
     {
-        
-        var produto = await _context.Produtos.FindAsync(id);
+        var produto = await _unitOfWork.ProdutoRepository.GetById(id);
 
         if (produto is null)
         {
             return NotFound("Nenhum produto encontrado");
         }
          
-        _context.Produtos.Remove(produto);
-        await _context.SaveChangesAsync();
+        _unitOfWork.ProdutoRepository.Delete(produto);
+        await _unitOfWork.CommitAsync();
         
         return Ok(produto);
-        
     }
-    
-    
-    
 }
