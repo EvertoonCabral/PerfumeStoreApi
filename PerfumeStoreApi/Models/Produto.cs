@@ -16,4 +16,9 @@ public class Produto
     public decimal PrecoVenda { get; set; }
     [Required]
     public int QuantidadeEstoque { get; set; }
+    [StringLength(500)]
+    public string? Descricao { get; set; } 
+    public bool IsAtivo { get; set; } = true; 
+    public DateTime DataCadastro { get; set; } = DateTime.Now; // Novo
+
 }
