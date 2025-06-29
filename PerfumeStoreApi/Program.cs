@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
 using AutoMapper;
 using PerfumeStoreApi.Repository;
+using PerfumeStoreApi.Service;
+using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;
 
 
@@ -24,6 +26,7 @@ builder.Services.AddControllers()
     .AddJsonOptions(options => options.JsonSerializerOptions
         .ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
+builder.Services.AddScoped<IClienteService, ClienteService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ClienteRepository, ClienteRepository>();

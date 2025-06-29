@@ -23,4 +23,14 @@ public class ClienteRepository : Repository<Cliente>, IClienteRepository
             .FirstOrDefaultAsync(c => c.Id == id);
         return _mapper.Map<ClienteDetalhesDto>(cliente);
     }
+    public async Task<Cliente?> GetByCpfAsync(string cpf)
+    {
+        if (string.IsNullOrWhiteSpace(cpf))
+            return null;
+
+        return await _context.Clientes
+            .FirstOrDefaultAsync(c => c.Cpf == cpf && c.IsAtivo);
+    }
+    
+    
 }

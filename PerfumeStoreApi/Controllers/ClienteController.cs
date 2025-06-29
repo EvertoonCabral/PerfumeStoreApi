@@ -4,6 +4,7 @@ using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Context.Dtos;
 using AutoMapper;
+using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;
 
 namespace PerfumeStoreApi.Controllers;
@@ -12,97 +13,170 @@ namespace PerfumeStoreApi.Controllers;
 [Route("api/[controller]")]
 public class ClienteController : ControllerBase
 {
-    private readonly IMapper _mapper;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IClienteService _clienteService;
 
-    public ClienteController( IMapper mapper, IUnitOfWork unitOfWork)
+    public ClienteController(IClienteService clienteService)
     {
-        _mapper = mapper;
-        _unitOfWork = unitOfWork;
+        _clienteService = clienteService;
     }
 
+    /// <summary>
+    /// Retorna todos os clientes com paginação e filtros
+    /// </summary>
     [HttpGet]
-    public async Task <ActionResult<IEnumerable<ClienteDto>>> RetornaClientes()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<PagedResult<ClienteDto>>> GetClientes([FromQuery] ClienteFiltroDto filtros)
     {
-        var clientes = await _unitOfWork.ClienteRepository.GetAll();
-
-        if (clientes == null || !clientes.Any())
-        {
-            return NotFound("Nenhum cliente encontrado");
-        }
+        var resultado = await _clienteService.GetClientesAsync(filtros);
         
-        return _mapper.Map<List<ClienteDto>>(clientes);
+        if (!resultado.Success)
+        {
+            return BadRequest(new { errors = resultado.Errors });
+        }
+
+        return Ok(resultado.Data);
     }
 
-    [HttpGet("{id}")]
-    public async Task <ActionResult<ClienteDto>> RetornaClientePorId(int id)
+    /// <summary>
+    /// Retorna um cliente específico por ID
+    /// </summary>
+    [HttpGet("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ClienteDto>> GetClienteById(int id)
     {
-        var cliente = await _unitOfWork.ClienteRepository.GetById(id);
-
-        if (cliente is null)
-        {
-            return NotFound("Nenhum cliente encontrado");            
-        }
+        var resultado = await _clienteService.GetClienteByIdAsync(id);
         
-        return _mapper.Map<ClienteDto>(cliente);
+        if (!resultado.Success)
+        {
+            return resultado.Errors.Any(e => e.Contains("não encontrado")) 
+                ? NotFound(new { message = resultado.Errors.First() })
+                : BadRequest(new { errors = resultado.Errors });
+        }
+
+        return Ok(resultado.Data);
     }
 
-    [HttpGet("{id}/detalhes")]
-    public async Task <ActionResult<ClienteDetalhesDto>> RetornaClienteDetalhes(int id)
+    /// <summary>
+    /// Retorna detalhes completos do cliente incluindo histórico de vendas
+    /// </summary>
+    [HttpGet("{id:int}/detalhes")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<ClienteDetalhesDto>> GetClienteDetalhes(int id)
     {
-        var cliente = await _unitOfWork.ClienteRepository.RetornaClienteDetalhesAsync(id);
+        var resultado = await _clienteService.GetClienteDetalhesAsync(id);
+        
+        if (!resultado.Success)
+        {
+            return resultado.Errors.Any(e => e.Contains("não encontrado"))
+                ? NotFound(new { message = resultado.Errors.First() })
+                : BadRequest(new { errors = resultado.Errors });
+        }
+
+        return Ok(resultado.Data);
+    }
+
+    /// <summary>
+    /// Cria um novo cliente
+    /// </summary>
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
+    public async Task<ActionResult<ClienteDto>> CreateCliente([FromBody] ClienteCreateUpdateDto clienteDto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var resultado = await _clienteService.CreateClienteAsync(clienteDto);
+        
+        if (!resultado.Success)
+        {
+            return resultado.Errors.Any(e => e.Contains("CPF"))
+                ? Conflict(new { errors = resultado.Errors })
+                : BadRequest(new { errors = resultado.Errors });
+        }
+
+        return CreatedAtAction(
+            nameof(GetClienteById),
+            new { id = resultado.Data!.Id },
+            resultado.Data);
+    }
+
+    /// <summary>
+    /// Atualiza um cliente existente
+    /// </summary>
+    [HttpPut("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
+    public async Task<ActionResult<ClienteDto>> UpdateCliente(int id, [FromBody] ClienteCreateUpdateDto clienteDto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var resultado = await _clienteService.UpdateClienteAsync(id, clienteDto);
+        
+        if (!resultado.Success)
+        {
+            if (resultado.Errors.Any(e => e.Contains("não encontrado")))
+                return NotFound(new { message = resultado.Errors.First() });
             
-        if (cliente is null)
-        {
-            return NotFound("Nenhum cliente encontrado");            
+            if (resultado.Errors.Any(e => e.Contains("CPF")))
+                return Conflict(new { errors = resultado.Errors });
+                
+            return BadRequest(new { errors = resultado.Errors });
         }
-        
-        return _mapper.Map<ClienteDetalhesDto>(cliente);
+
+        return Ok(resultado.Data);
     }
 
-    [HttpPut("{id}")]
-    public async  Task<ActionResult<ClienteDto>> AtualizaCliente(int id, ClienteCreateUpdateDto clienteDto)
+    /// <summary>
+    /// Desativa um cliente (soft delete)
+    /// </summary>
+    [HttpPatch("{id:int}/desativar")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult> DesativarCliente(int id)
     {
-        var cliente =  await _unitOfWork.ClienteRepository.GetById(id);
-
-        if (cliente is null)
+        var resultado = await _clienteService.DesativarClienteAsync(id);
+        
+        if (!resultado.Success)
         {
-            return NotFound("Nenhum cliente encontrado");
+            return resultado.Errors.Any(e => e.Contains("não encontrado"))
+                ? NotFound(new { message = resultado.Errors.First() })
+                : BadRequest(new { errors = resultado.Errors });
         }
-        
-        // Mapeia os valores do DTO para a entidade existente
-        _mapper.Map(clienteDto, cliente);
-        
-      await  _unitOfWork.CommitAsync();        
-        return _mapper.Map<ClienteDto>(cliente);
+
+        return Ok(new { message = resultado.Message });
     }
 
-    [HttpPost("Criarcliente")]
-    public async Task<ActionResult<ClienteCreateUpdateDto>> CriarCliente(ClienteCreateUpdateDto clienteDto)
+    /// <summary>
+    /// Remove um cliente permanentemente (apenas se não tiver vendas)
+    /// </summary>
+    [HttpDelete("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult> DeleteCliente(int id)
     {
-        var cliente = _mapper.Map<Cliente>(clienteDto);
+        var resultado = await _clienteService.DeleteClienteAsync(id);
         
-        _unitOfWork.ClienteRepository.Create(cliente);
-       await _unitOfWork.CommitAsync();
-       
-        var novoClienteDto = _mapper.Map<ClienteCreateUpdateDto>(cliente);
-        
-            return Ok(novoClienteDto);
-    }
-
-    [HttpDelete("{id}")]
-    public async  Task<ActionResult<ClienteDto>> ExcluirClienteAsync(int id)
-    {
-        var cliente = await _unitOfWork.ClienteRepository.GetById(id);
-
-        if (cliente is null)
+        if (!resultado.Success)
         {
-            return NotFound("Nenhum cliente encontrado");
+            return resultado.Errors.Any(e => e.Contains("não encontrado"))
+                ? NotFound(new { message = resultado.Errors.First() })
+                : BadRequest(new { errors = resultado.Errors });
         }
-        
-        _unitOfWork.ClienteRepository.Delete(cliente);
-       await _unitOfWork.CommitAsync();      
-        
-        return Ok(_mapper.Map<ClienteDto>(cliente));
+
+        return Ok(new { message = resultado.Message });
     }
 }
