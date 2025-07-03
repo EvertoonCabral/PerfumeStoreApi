@@ -20,5 +20,7 @@ public class Produto
     public string? Descricao { get; set; } 
     public bool IsAtivo { get; set; } = true; 
     public DateTime DataCadastro { get; set; } = DateTime.Now; // Novo
+    public int EstoqueId { get; set; } // FK
+    public virtual Estoque Estoque { get; set; } // Propriedade de navegação
 
 }

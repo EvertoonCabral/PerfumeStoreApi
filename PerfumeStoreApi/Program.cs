@@ -10,13 +10,8 @@ using PerfumeStoreApi.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Add services to the container.
 
-// Carrega a connection string antes de usar
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-// Registra o AppDbContext ANTES do builder.Build()
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseLazyLoadingProxies().UseSqlServer(connectionString);
@@ -27,7 +22,7 @@ builder.Services.AddControllers()
         .ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddScoped<IClienteService, ClienteService>();
-
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ClienteRepository, ClienteRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
