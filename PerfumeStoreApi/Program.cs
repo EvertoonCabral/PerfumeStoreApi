@@ -25,6 +25,8 @@ builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<ProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<IVendaRepository, VendaRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

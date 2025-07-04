@@ -7,7 +7,8 @@ public class UnitOfWork : IUnitOfWork
 {
     private IProdutoRepository _produtoRepo;
     private IClienteRepository _clienteRepo;
-    private readonly AppDbContext _context; // Modificado para readonly
+    private IVendaRepository _vendaRepo;
+    private readonly AppDbContext _context; 
 
 
     public UnitOfWork(AppDbContext context)
@@ -29,6 +30,14 @@ public class UnitOfWork : IUnitOfWork
         get
         {
             return _produtoRepo ??= new ProdutoRepository(_context);
+        }
+    }
+    
+    public IVendaRepository VendaRepository
+    {
+        get
+        {
+            return _vendaRepo ??= new VendaRepository(_context);
         }
     }
     public void Commit()
