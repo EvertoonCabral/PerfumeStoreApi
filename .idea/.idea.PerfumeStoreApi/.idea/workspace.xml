@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="" />
+    <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IProdutoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IProdutoService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -128,7 +133,8 @@
       <workItem from="1749690936680" duration="2843000" />
       <workItem from="1751073117158" duration="7664000" />
       <workItem from="1751168233613" duration="4007000" />
-      <workItem from="1751583967159" duration="2410000" />
+      <workItem from="1751583967159" duration="4488000" />
+      <workItem from="1752282794873" duration="546000" />
     </task>
     <servers />
   </component>

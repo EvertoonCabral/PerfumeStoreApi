@@ -15,7 +15,7 @@ public class ProdutoService : IProdutoService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<IEnumerable<Produto>> ListarProdutosAsync()
+    public async Task<IEnumerable<Produto>> ListarProdutosTodosAsync()
     {
         return await _unitOfWork.ProdutoRepository.GetAll();
     }

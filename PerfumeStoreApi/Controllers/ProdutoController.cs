@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Models;
+using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;
 
 namespace PerfumeStoreApi.Controllers;
@@ -11,17 +12,17 @@ namespace PerfumeStoreApi.Controllers;
 [ApiController]
 public class ProdutoController : ControllerBase
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IProdutoService _produtoService;
 
-    public ProdutoController(IUnitOfWork unitOfWork)
+    public ProdutoController(IProdutoService produtoService)
     {
-        _unitOfWork = unitOfWork;
+        _produtoService = produtoService;
     }
 
     [HttpGet]
     public async Task<ActionResult<ICollection<Produto>>> GetProdutos()
     {
-        var produtos = await _unitOfWork.ProdutoRepository.GetAll();
+        var produtos = await _produtoService.ListarProdutosTodosAsync();
 
         if (produtos is null)
         {
@@ -34,7 +35,7 @@ public class ProdutoController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Produto>> GetProduto(int id)
     {
-        var produto = await _unitOfWork.ProdutoRepository.GetById(id);
+        var produto = await _produtoService.ObterProdutoAsync(id);
 
         if (produto is null)
         {
@@ -47,16 +48,15 @@ public class ProdutoController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<Produto>> AlterarProduto(int id, Produto produto)
     {
-        var produtoAtualizado = await _unitOfWork.ProdutoRepository.GetById(id);
+        var produtoAtualizado = await _produtoService.ObterProdutoAsync(id);
         
         if (produtoAtualizado is null)
         {
             return NotFound("O produto não foi encontrado");
         }
         
-        // Atualizar usando o repository
-        _unitOfWork.ProdutoRepository.Update(produtoAtualizado, produto);
-        await _unitOfWork.CommitAsync();
+        // Atualizar usando o service, o commit ocorre no Service tmb
+      await _produtoService.AtualizarProdutoAsync(id, produtoAtualizado);
         
         return Ok(produtoAtualizado);
     }
@@ -64,8 +64,7 @@ public class ProdutoController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Produto>> CadastrarProduto(Produto produto)
     {
-        var novoProduto = _unitOfWork.ProdutoRepository.Create(produto);
-        await _unitOfWork.CommitAsync();
+        var novoProduto = await _produtoService.CriarProdutoAsync(produto);
         
         return Ok(novoProduto);
     }
@@ -73,15 +72,13 @@ public class ProdutoController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult<Produto>> ExcluirProduto(int id)
     {
-        var produto = await _unitOfWork.ProdutoRepository.GetById(id);
+        var produto = await _produtoService.ObterProdutoAsync(id);
 
         if (produto is null)
         {
             return NotFound("Nenhum produto encontrado");
         }
-         
-        _unitOfWork.ProdutoRepository.Delete(produto);
-        await _unitOfWork.CommitAsync();
+        await _produtoService.ExcluirProdutoAsync(id);
         
         return Ok(produto);
     }
