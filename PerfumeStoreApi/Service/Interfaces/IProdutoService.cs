@@ -6,9 +6,9 @@ namespace PerfumeStoreApi.Service.Interfaces;
 
 public interface IProdutoService
 {
-    Task<IEnumerable<GetProdutosDto>> ListarProdutosTodosAsync();
-    Task<Produto?> ObterProdutoAsync(int id);
+    Task<IEnumerable<GetProdutosDto?>> ListarProdutosTodosAsync();
+    Task<GetProdutosDto?> ObterProdutoAsync(int id);
     Task<ProdutoDto?> CriarProdutoAsync(ProdutoCreateUpdateDto produto);
-    Task<Produto?> AtualizarProdutoAsync(int id, Produto dadosAtualizados);
+    Task<ProdutoDto?> AtualizarProdutoAsync(int id, ProdutoCreateUpdateDto dadosAtualizados);
     Task<bool> ExcluirProdutoAsync(int id);
 }

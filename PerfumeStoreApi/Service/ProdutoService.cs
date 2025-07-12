@@ -19,15 +19,29 @@ public class ProdutoService : IProdutoService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<GetProdutosDto>> ListarProdutosTodosAsync()
+    public async Task<IEnumerable<GetProdutosDto?>> ListarProdutosTodosAsync()
     {
         var produtos=  await _unitOfWork.ProdutoRepository.GetAll();
+
+        if (produtos is null)
+        {
+            throw new NullReferenceException("Produtos não encontrados");
+        }
+        
         return _mapper.Map<IEnumerable<GetProdutosDto>>(produtos);
     }
 
-    public async Task<Produto?> ObterProdutoAsync(int id)
+    public async Task<GetProdutosDto?> ObterProdutoAsync(int id)
     {
-        return await _unitOfWork.ProdutoRepository.GetById(id);
+        var produto =  await _unitOfWork.ProdutoRepository.GetById(id);
+        
+        if (produto is null)
+        {
+            throw new NullReferenceException("Produtos não encontrados");
+        }
+        
+         return _mapper.Map<GetProdutosDto>(produto);
+         
     }
 
     public async Task<ProdutoDto?> CriarProdutoAsync(ProdutoCreateUpdateDto produtoDto)
@@ -53,24 +67,24 @@ public class ProdutoService : IProdutoService
         return produtoResult;
     }
 
-    public async Task<Produto?> AtualizarProdutoAsync(int id, Produto dadosAtualizados)
+    public async Task<ProdutoDto?> AtualizarProdutoAsync(int id, ProdutoCreateUpdateDto dto)
     {
         var produtoExistente = await _unitOfWork.ProdutoRepository.GetById(id);
-
         if (produtoExistente == null)
             return null;
 
         if (!produtoExistente.IsAtivo)
             throw new InvalidOperationException("Produto inativo não pode ser alterado.");
 
-        if (dadosAtualizados.PrecoVenda < dadosAtualizados.PrecoCompra)
+        if (dto.PrecoVenda < dto.PrecoCompra)
             throw new InvalidOperationException("O preço de venda não pode ser inferior ao preço de compra.");
 
-        _unitOfWork.ProdutoRepository.Update(produtoExistente, dadosAtualizados);
+        _mapper.Map(dto, produtoExistente);
         await _unitOfWork.CommitAsync();
 
-        return produtoExistente;
+        return _mapper.Map<ProdutoDto>(produtoExistente);
     }
+
 
     public async Task<bool> ExcluirProdutoAsync(int id)
     {

@@ -14,10 +14,12 @@ namespace PerfumeStoreApi.Controllers;
 public class ProdutoController : ControllerBase
 {
     private readonly IProdutoService _produtoService;
+    private readonly IMapper _mapper;
 
-    public ProdutoController(IProdutoService produtoService)
+    public ProdutoController(IProdutoService produtoService, IMapper mapper)
     {
         _produtoService = produtoService;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -34,7 +36,7 @@ public class ProdutoController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Produto>> GetProduto(int id)
+    public async Task<ActionResult<GetProdutosDto>> GetProduto(int id)
     {
         var produto = await _produtoService.ObterProdutoAsync(id);
 
@@ -45,22 +47,17 @@ public class ProdutoController : ControllerBase
         
         return Ok(produto);
     }
-
     [HttpPut("{id}")]
-    public async Task<ActionResult<Produto>> AlterarProduto(int id, Produto produto)
+    public async Task<IActionResult> AlterarProduto(int id, ProdutoCreateUpdateDto produtoDto)
     {
-        var produtoAtualizado = await _produtoService.ObterProdutoAsync(id);
-        
-        if (produtoAtualizado is null)
-        {
-            return NotFound("O produto não foi encontrado");
-        }
-        
-        // Atualizar usando o service, o commit ocorre no Service tmb
-      await _produtoService.AtualizarProdutoAsync(id, produtoAtualizado);
-        
-        return Ok(produtoAtualizado);
+        var atualizado = await _produtoService.AtualizarProdutoAsync(id, produtoDto);
+
+        if (atualizado == null)
+            return NotFound();
+
+        return Ok(atualizado);
     }
+
 
     [HttpPost]
     public async Task<ActionResult<ProdutoDto>> CadastrarProduto(ProdutoCreateUpdateDto produto)
@@ -71,7 +68,7 @@ public class ProdutoController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<Produto>> ExcluirProduto(int id)
+    public async Task<ActionResult<ProdutoDto>> ExcluirProduto(int id)
     {
         var produto = await _produtoService.ObterProdutoAsync(id);
 
