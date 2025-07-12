@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PerfumeStoreApi.Context;
 
@@ -11,9 +12,11 @@ using PerfumeStoreApi.Context;
 namespace PerfumeStoreApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250712020039_AddEstoqueIdToProduto")]
+    partial class AddEstoqueIdToProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,22 +84,6 @@ namespace PerfumeStoreApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Estoque");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DataCriacao = new DateTime(2025, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "Produtos novos",
-                            Nome = "Estoque de Novos"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DataCriacao = new DateTime(2025, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "Produtos seminovos ou usados",
-                            Nome = "Estoque de Usados"
-                        });
                 });
 
             modelBuilder.Entity("PerfumeStoreApi.Models.ItemVenda", b =>

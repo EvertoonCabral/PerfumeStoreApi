@@ -10,8 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ProdutoDTO/GetProdutosDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ProdutoDTO/ProdutoCreateUpdateDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ProdutoDTO/ProdutoDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ClienteGetDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Produto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Produto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IProdutoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IProdutoService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" afterDir="false" />
     </list>
@@ -40,6 +49,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4b21fc3f8a3abb5d25f06c622276fbec0fd3932f169cc6af520bf5abc6a46b4/DbSet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/829d6ac6e62b9bee9ef8e79e827d87d0c31a7c2eefbc354135d9a8f2c4deb/Mapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a0b45f29f34f594814a7b1fbc25fe5ef3c18257956ed4f4fbfa68717db58/DbContext.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
@@ -134,7 +144,7 @@
       <workItem from="1751073117158" duration="7664000" />
       <workItem from="1751168233613" duration="4007000" />
       <workItem from="1751583967159" duration="4488000" />
-      <workItem from="1752282794873" duration="546000" />
+      <workItem from="1752282794873" duration="4925000" />
     </task>
     <servers />
   </component>

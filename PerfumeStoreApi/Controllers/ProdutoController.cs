@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
+using PerfumeStoreApi.Context.Dtos.ProdutoDTO;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;
@@ -20,7 +21,7 @@ public class ProdutoController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<ICollection<Produto>>> GetProdutos()
+    public async Task<ActionResult<ICollection<GetProdutosDto>>> GetProdutos()
     {
         var produtos = await _produtoService.ListarProdutosTodosAsync();
 
@@ -62,7 +63,7 @@ public class ProdutoController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Produto>> CadastrarProduto(Produto produto)
+    public async Task<ActionResult<ProdutoDto>> CadastrarProduto(ProdutoCreateUpdateDto produto)
     {
         var novoProduto = await _produtoService.CriarProdutoAsync(produto);
         

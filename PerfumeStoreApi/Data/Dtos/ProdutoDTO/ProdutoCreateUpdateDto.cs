@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PerfumeStoreApi.Models;
+namespace PerfumeStoreApi.Context.Dtos.ProdutoDTO;
 
-public class Produto
+public class ProdutoCreateUpdateDto
 {
     [Key]
     public int Id { get; set; }
@@ -12,13 +12,12 @@ public class Produto
     public string Marca { get; set; }
     [Required]
     public decimal PrecoCompra { get; set; }
+    [Required]
     public decimal PrecoVenda { get; set; }
     [Required]
     public int QuantidadeEstoque { get; set; }
     [StringLength(500)]
     public string? Descricao { get; set; } 
+    
     public bool IsAtivo { get; set; } = true; 
-    public DateTime DataCadastro { get; set; } = DateTime.Now; 
-    public int EstoqueId { get; set; } // FK
-    public virtual Estoque Estoque { get; set; } 
 }

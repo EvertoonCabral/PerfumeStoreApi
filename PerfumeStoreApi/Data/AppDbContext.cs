@@ -29,6 +29,25 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Venda>()
             .Property(v => v.ValorTotal)
             .HasPrecision(10, 2);
+        
+        
+        modelBuilder.Entity<Estoque>().HasData(
+            new Estoque
+            {
+                Id = 1,
+                Nome = "Estoque de Novos",
+                Descricao = "Produtos novos",
+                DataCriacao = new DateTime(2025, 7, 12, 0, 0, 0) // valor fixo
+            },
+            new Estoque
+            {
+                Id = 2,
+                Nome = "Estoque de Usados",
+                Descricao = "Produtos seminovos ou usados",
+                DataCriacao = new DateTime(2025, 7, 12, 0, 0, 0) // valor fixo
+            }
+        );
+        
     }
 
 
