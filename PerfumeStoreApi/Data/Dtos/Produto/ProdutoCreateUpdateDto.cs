@@ -14,8 +14,6 @@ public class ProdutoCreateUpdateDto
     public decimal PrecoCompra { get; set; }
     [Required]
     public decimal PrecoVenda { get; set; }
-    [Required]
-    public int QuantidadeEstoque { get; set; }
     [StringLength(500)]
     public string? Descricao { get; set; } 
     

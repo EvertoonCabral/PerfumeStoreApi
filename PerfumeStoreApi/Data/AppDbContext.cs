@@ -56,4 +56,8 @@ public class AppDbContext : DbContext
     public DbSet<Venda> Vendas { get; set; }
     public DbSet<ItemVenda> ItemVendas { get; set; }
     public DbSet<Pagamento> Pagamentos { get; set; }
+    public DbSet<Estoque> Estoques { get; set; }
+    public DbSet<ItemEstoque> ItemEstoque { get; set; }
+    public DbSet<MovimentacaoEstoque> MovimentacaoEstoque { get; set; }
+    
 }

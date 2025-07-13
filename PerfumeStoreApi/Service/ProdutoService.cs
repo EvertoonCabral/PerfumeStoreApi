@@ -48,16 +48,9 @@ public class ProdutoService : IProdutoService
     {
         if (produtoDto.PrecoVenda < produtoDto.PrecoCompra)
             throw new InvalidOperationException("O preço de venda não pode ser inferior ao preço de compra.");
-
-        if (produtoDto.QuantidadeEstoque < 0)
-            throw new InvalidOperationException("A quantidade em estoque não pode ser negativa.");
         
         var produto = _mapper.Map<Produto>(produtoDto);
         
-        if (produto.EstoqueId == 0 || produto.EstoqueId == null) // considerando que 0 significa não informado
-        {
-            produto.EstoqueId = 1;
-        }
 
         var novoProduto = _unitOfWork.ProdutoRepository.Create(produto);
         await _unitOfWork.CommitAsync();

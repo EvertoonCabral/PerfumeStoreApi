@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore.Storage;
 using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Repository;
 
@@ -8,6 +9,9 @@ public class UnitOfWork : IUnitOfWork
     private IProdutoRepository _produtoRepo;
     private IClienteRepository _clienteRepo;
     private IVendaRepository _vendaRepo;
+    private IEstoqueRepository _estoqueRepo;
+    private IItemEstoqueRepository _itemEstoqueRepo;
+    private IMovimentacaoEstoqueRepository _movimentacaoEstoqueRepo;
     private readonly AppDbContext _context; 
 
 
@@ -21,6 +25,29 @@ public class UnitOfWork : IUnitOfWork
         get
         {
             return _clienteRepo ??= new ClienteRepository(_context);
+        }
+     
+    }
+    
+    public IEstoqueRepository EstoqueRepository
+    {
+        get
+        {
+            return _estoqueRepo ??= new EstoqueRepository(_context);
+        }
+     
+    }    public IItemEstoqueRepository ItemEstoqueRepository
+    {
+        get
+        {
+            return _itemEstoqueRepo ??= new ItemEstoqueRepository(_context);
+        }
+     
+    }public IMovimentacaoEstoqueRepository MovimentacaoEstoqueRepository
+    {
+        get
+        {
+            return _movimentacaoEstoqueRepo ??= new MovimentacaoEstoqueRepository(_context);
         }
      
     }
@@ -49,6 +76,11 @@ public class UnitOfWork : IUnitOfWork
     {
         await _context.SaveChangesAsync();  
         
+    }
+    
+    public async Task<IDbContextTransaction> BeginTransactionAsync()
+    {
+        return await _context.Database.BeginTransactionAsync();
     }
 
     public void Dispose()

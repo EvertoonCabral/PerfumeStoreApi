@@ -13,12 +13,11 @@ public class Produto
     [Required]
     public decimal PrecoCompra { get; set; }
     public decimal PrecoVenda { get; set; }
-    [Required]
-    public int QuantidadeEstoque { get; set; }
     [StringLength(500)]
     public string? Descricao { get; set; } 
     public bool IsAtivo { get; set; } = true; 
+    
     public DateTime DataCadastro { get; set; } = DateTime.Now; 
-    public int EstoqueId { get; set; } // FK
-    public virtual Estoque Estoque { get; set; } 
+    public virtual ICollection<ItemEstoque> ItensEstoque { get; set; } = new List<ItemEstoque>();
+
 }

@@ -11,8 +11,8 @@ public class Estoque
 
     public string? Descricao { get; set; }
 
-    // Propriedade de navegação
-    public virtual ICollection<Produto> ProdutosEstoque { get; set; } = new List<Produto>();
-
+    public bool IsAtivo { get; set; } = true;
     public DateTime DataCriacao { get; set; } = DateTime.Now;
+    
+    public virtual ICollection<ItemEstoque> ItensEstoque { get; set; } = new List<ItemEstoque>();
 }

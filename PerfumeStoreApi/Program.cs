@@ -23,10 +23,14 @@ builder.Services.AddControllers()
 
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
+builder.Services.AddScoped<IEstoqueService, EstoqueService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<ProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<IVendaRepository, VendaRepository>();
+builder.Services.AddScoped<IEstoqueRepository, EstoqueRepository>();
+builder.Services.AddScoped<IItemEstoqueRepository, ItemEstoqueRepository>();
+builder.Services.AddScoped<IMovimentacaoEstoqueRepository, MovimentacaoEstoqueRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

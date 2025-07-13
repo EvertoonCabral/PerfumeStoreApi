@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
 
@@ -7,10 +8,13 @@ public class Repository<T> : IRepository<T> where T : class
 {
 
     protected readonly AppDbContext _context;
+    protected readonly DbSet<T> _dbSet;
+
     
     public Repository(AppDbContext context)
     {
         _context = context;
+        _dbSet = context.Set<T>();
     }
     
     public  async Task <IEnumerable<T>> GetAll()
@@ -22,6 +26,11 @@ public class Repository<T> : IRepository<T> where T : class
     {
         
         return await _context.Set<T>().FindAsync(id);
+    }
+    
+    public virtual IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression)
+    {
+        return _dbSet.Where(expression);
     }
 
     public T Create(T entity)
@@ -44,4 +53,5 @@ public class Repository<T> : IRepository<T> where T : class
         return entity;
         
     }
+    
 } 
