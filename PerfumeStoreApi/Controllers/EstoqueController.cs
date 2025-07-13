@@ -30,7 +30,7 @@ public class EstoqueController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { Message = "Erro interno do servidor" });
+            return StatusCode(500, new { resonseError = "Erro interno do servidor", ex.Message });
         }
     }
 

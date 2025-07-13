@@ -8,10 +8,8 @@ public class MovimentacaoEstoque
     
     [Key]
     public int Id { get; set; }
-    
-    [Required]
-    public int ItemEstoqueId { get; set; }
-    public virtual ItemEstoque ItemEstoque { get; set; }
+    public int? ItemEstoqueId { get; set; }
+    public virtual ItemEstoque? ItemEstoque { get; set; }
     
     [Required]
     public TipoMovimentacao Tipo { get; set; }

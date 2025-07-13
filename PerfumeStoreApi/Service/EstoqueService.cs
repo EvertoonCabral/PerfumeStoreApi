@@ -22,51 +22,51 @@ public class EstoqueService : IEstoqueService
     }
 
 
-public async Task<EstoqueResponse> CriarEstoqueAsync(CreateEstoqueRequest request)
-{
-    // Verificar se já existe um estoque com o mesmo nome
-    var estoqueExistente = await _unitOfWork.EstoqueRepository
-        .GetByCondition(e => e.Nome.ToLower() == request.Nome.ToLower())
-        .FirstOrDefaultAsync();
-
-    if (estoqueExistente != null)
+    public async Task<EstoqueResponse> CriarEstoqueAsync(CreateEstoqueRequest request)
     {
-        throw new InvalidOperationException("Já existe um estoque com este nome");
+        var estoqueExistente = await _unitOfWork.EstoqueRepository
+            .GetByCondition(e => e.Nome.ToLower() == request.Nome.ToLower())
+            .FirstOrDefaultAsync();
+
+        if (estoqueExistente != null)
+        {
+            throw new InvalidOperationException("Já existe um estoque com este nome");
+        }
+
+        var novoEstoque = new Estoque
+        {
+            Nome = request.Nome,
+            Descricao = request.Descricao,
+            DataCriacao = DateTime.Now
+        };
+
+        _unitOfWork.EstoqueRepository.Create(novoEstoque);
+        await _unitOfWork.CommitAsync();
+
+        
+        var movimentacao = new MovimentacaoEstoque
+        {
+            ItemEstoqueId = null,
+            Quantidade = 0,
+            Tipo = TipoMovimentacao.Criacao,
+            DataMovimentacao = DateTime.Now,
+            Observacoes = $"Estoque '{novoEstoque.Nome}' criado",
+            UsuarioResponsavel = request.UsuarioResponsavel
+        };
+
+        _unitOfWork.MovimentacaoEstoqueRepository.Create(movimentacao);
+        await _unitOfWork.CommitAsync();
+
+        return new EstoqueResponse
+        {
+            Id = novoEstoque.Id,
+            Nome = novoEstoque.Nome,
+            Descricao = novoEstoque.Descricao,
+            DataCriacao = novoEstoque.DataCriacao,
+            TotalItens = 0,
+            TotalProdutos = 0
+        };
     }
-
-    var novoEstoque = new Estoque
-    {
-        Nome = request.Nome,
-        Descricao = request.Descricao,
-        DataCriacao = DateTime.Now
-    };
-
-    _unitOfWork.EstoqueRepository.Create(novoEstoque);
-    await _unitOfWork.CommitAsync();
-
-    // Registrar a criação do estoque no histórico (opcional)
-    var movimentacao = new MovimentacaoEstoque
-    {
-        Quantidade = 0,
-        Tipo = TipoMovimentacao.Criacao,
-        DataMovimentacao = DateTime.Now,
-        Observacoes = $"Estoque '{novoEstoque.Nome}' criado",
-        UsuarioResponsavel = request.UsuarioResponsavel
-    };
-
-    _unitOfWork.MovimentacaoEstoqueRepository.Create(movimentacao);
-    await _unitOfWork.CommitAsync();
-
-    return new EstoqueResponse
-    {
-        Id = novoEstoque.Id,
-        Nome = novoEstoque.Nome,
-        Descricao = novoEstoque.Descricao,
-        DataCriacao = novoEstoque.DataCriacao,
-        TotalItens = 0,
-        TotalProdutos = 0
-    };
-}
 
 public async Task<EstoqueResponse?> ObterEstoquePorIdAsync(int id)
 {
@@ -119,8 +119,12 @@ public async Task<List<EstoqueResponse>> ObterTodosEstoquesAsync()
             .ToListAsync();
     }
 
-    public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int quantidade, 
-        TipoMovimentacao tipo, string? observacoes = null, string? usuarioResponsavel = null)
+public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int quantidade, 
+    TipoMovimentacao tipo, string? observacoes = null, string? usuarioResponsavel = null)
+{
+    using var transaction = await _unitOfWork.BeginTransactionAsync();
+    
+    try
     {
         var itemEstoque = await ObterItemEstoqueAsync(produtoId, estoqueId);
         
@@ -133,12 +137,16 @@ public async Task<List<EstoqueResponse>> ObterTodosEstoquesAsync()
                 {
                     ProdutoId = produtoId,
                     EstoqueId = estoqueId,
-                    Quantidade = 0
+                    Quantidade = 0,
+                    DataUltimaMovimentacao = DateTime.Now
                 };
                 _unitOfWork.ItemEstoqueRepository.Create(itemEstoque);
                 
-                // Precisa fazer commit para gerar o ID antes de criar a movimentação
+                // Salvar para gerar o ID
                 await _unitOfWork.CommitAsync();
+                
+                // Recarregar o item para ter o ID correto
+                itemEstoque = await ObterItemEstoqueAsync(produtoId, estoqueId);
             }
             else
             {
@@ -151,8 +159,8 @@ public async Task<List<EstoqueResponse>> ObterTodosEstoquesAsync()
         {
             TipoMovimentacao.Entrada or TipoMovimentacao.Devolucao => quantidadeAnterior + quantidade,
             TipoMovimentacao.Saida or TipoMovimentacao.Perda => quantidadeAnterior - quantidade,
-            TipoMovimentacao.Transferencia => quantidadeAnterior - quantidade, // Saída na transferência
-            TipoMovimentacao.Ajuste => quantidade, // Quantidade absoluta
+            TipoMovimentacao.Transferencia => quantidadeAnterior - quantidade,
+            TipoMovimentacao.Ajuste => quantidade,
             _ => throw new ArgumentException("Tipo de movimentação não suportado")
         };
 
@@ -173,15 +181,23 @@ public async Task<List<EstoqueResponse>> ObterTodosEstoquesAsync()
             Quantidade = Math.Abs(quantidade),
             QuantidadeAnterior = quantidadeAnterior,
             QuantidadePosterior = novaQuantidade,
+            DataMovimentacao = DateTime.Now,
             Observacoes = observacoes,
             UsuarioResponsavel = usuarioResponsavel
         };
 
         _unitOfWork.MovimentacaoEstoqueRepository.Create(movimentacao);
         await _unitOfWork.CommitAsync();
-
+        
+        await transaction.CommitAsync();
         return true;
     }
+    catch
+    {
+        await transaction.RollbackAsync();
+        throw;
+    }
+}
 
     public async Task<bool> TransferirEstoqueAsync(int produtoId, int estoqueOrigemId, int estoqueDestinoId, 
         int quantidade, string? observacoes = null, string? usuarioResponsavel = null)
