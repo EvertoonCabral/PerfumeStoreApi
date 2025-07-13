@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PerfumeStoreApi.Context.Dtos;
+using PerfumeStoreApi.Data.Dtos.Cliente;
 using PerfumeStoreApi.Models;
 
 namespace PerfumeStoreApi.Repository;

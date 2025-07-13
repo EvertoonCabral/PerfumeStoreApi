@@ -4,6 +4,7 @@ using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Context.Dtos;
 using AutoMapper;
+using PerfumeStoreApi.Data.Dtos.Cliente;
 using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;
 

@@ -39,7 +39,6 @@ public class ProdutoService : IProdutoService
         {
             throw new NullReferenceException("Produtos não encontrados");
         }
-        
          return _mapper.Map<GetProdutosDto>(produto);
          
     }

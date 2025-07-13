@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
+using PerfumeStoreApi.Data;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.UnitOfWork;
 

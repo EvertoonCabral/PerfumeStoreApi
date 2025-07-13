@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Models;
 
-namespace PerfumeStoreApi.Context;
+namespace PerfumeStoreApi.Data;
 
 public class AppDbContext : DbContext
 {

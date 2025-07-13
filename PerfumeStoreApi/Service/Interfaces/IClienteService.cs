@@ -1,4 +1,5 @@
 using PerfumeStoreApi.Context.Dtos;
+using PerfumeStoreApi.Data.Dtos.Cliente;
 
 namespace PerfumeStoreApi.Service.Interfaces;
 

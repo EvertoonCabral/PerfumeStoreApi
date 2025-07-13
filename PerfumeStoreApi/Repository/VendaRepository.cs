@@ -1,5 +1,6 @@
 using AutoMapper;
 using PerfumeStoreApi.Context;
+using PerfumeStoreApi.Data;
 using PerfumeStoreApi.Models;
 
 namespace PerfumeStoreApi.Repository;

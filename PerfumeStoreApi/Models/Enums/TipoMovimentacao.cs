@@ -7,5 +7,6 @@ public enum TipoMovimentacao
     Transferencia,
     Ajuste,
     Perda,
-    Devolucao
+    Devolucao,
+    Criacao
 }

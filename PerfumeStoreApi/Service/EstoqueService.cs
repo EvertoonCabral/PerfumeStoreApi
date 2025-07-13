@@ -1,7 +1,10 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PerfumeStoreApi.Data.Dtos.Movimentação;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Models.Enums;
-using PerfumeStoreApi.Repository;
 using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;
 
@@ -10,14 +13,88 @@ namespace PerfumeStoreApi.Service;
 public class EstoqueService : IEstoqueService
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
 
     public EstoqueService(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
+
+
+public async Task<EstoqueResponse> CriarEstoqueAsync(CreateEstoqueRequest request)
+{
+    // Verificar se já existe um estoque com o mesmo nome
+    var estoqueExistente = await _unitOfWork.EstoqueRepository
+        .GetByCondition(e => e.Nome.ToLower() == request.Nome.ToLower())
+        .FirstOrDefaultAsync();
+
+    if (estoqueExistente != null)
+    {
+        throw new InvalidOperationException("Já existe um estoque com este nome");
+    }
+
+    var novoEstoque = new Estoque
+    {
+        Nome = request.Nome,
+        Descricao = request.Descricao,
+        DataCriacao = DateTime.Now
+    };
+
+    _unitOfWork.EstoqueRepository.Create(novoEstoque);
+    await _unitOfWork.CommitAsync();
+
+    // Registrar a criação do estoque no histórico (opcional)
+    var movimentacao = new MovimentacaoEstoque
+    {
+        Quantidade = 0,
+        Tipo = TipoMovimentacao.Criacao,
+        DataMovimentacao = DateTime.Now,
+        Observacoes = $"Estoque '{novoEstoque.Nome}' criado",
+        UsuarioResponsavel = request.UsuarioResponsavel
+    };
+
+    _unitOfWork.MovimentacaoEstoqueRepository.Create(movimentacao);
+    await _unitOfWork.CommitAsync();
+
+    return new EstoqueResponse
+    {
+        Id = novoEstoque.Id,
+        Nome = novoEstoque.Nome,
+        Descricao = novoEstoque.Descricao,
+        DataCriacao = novoEstoque.DataCriacao,
+        TotalItens = 0,
+        TotalProdutos = 0
+    };
+}
+
+public async Task<EstoqueResponse?> ObterEstoquePorIdAsync(int id)
+{
+    var estoque = await _unitOfWork.EstoqueRepository
+        .GetByCondition(e => e.Id == id)
+        .Include(e => e.ItensEstoque)  // Incluir os itens para cálculo
+        .FirstOrDefaultAsync();
     
-   public async Task<ItemEstoque?> ObterItemEstoqueAsync(int produtoId, int estoqueId)
+    if (estoque == null)
+        return null;
+
+    var response = _mapper.Map<Estoque, EstoqueResponse>(estoque);
+
+    return response;
+}
+
+public async Task<List<EstoqueResponse>> ObterTodosEstoquesAsync()
+{
+    var query = await _unitOfWork.EstoqueRepository.GetAll();
+    var estoques = await query
+        .Include(e => e.ItensEstoque)
+        .ToListAsync();
+
+    var response = _mapper.Map<List<Estoque>, List<EstoqueResponse>>(estoques);
+    
+    return response;
+}
+    public async Task<ItemEstoque?> ObterItemEstoqueAsync(int produtoId, int estoqueId)
     {
         return await _unitOfWork.ItemEstoqueRepository
             .GetByCondition(ie => ie.ProdutoId == produtoId && ie.EstoqueId == estoqueId)

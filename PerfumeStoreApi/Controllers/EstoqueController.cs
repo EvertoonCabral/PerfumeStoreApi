@@ -15,6 +15,55 @@ public class EstoqueController : ControllerBase
     {
         _estoqueService = estoqueService;
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> CriarEstoque([FromBody] CreateEstoqueRequest request)
+    {
+        try
+        {
+            var estoque = await _estoqueService.CriarEstoqueAsync(request);
+            return Ok(estoque);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Message = "Erro interno do servidor" });
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterTodosEstoques()
+    {
+        try
+        {
+            var estoques = await _estoqueService.ObterTodosEstoquesAsync();
+            return Ok(estoques);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Message = "Erro interno do servidor" });
+        }
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> ObterEstoquePorId(int id)
+    {
+        try
+        {
+            var estoque = await _estoqueService.ObterEstoquePorIdAsync(id);
+            if (estoque == null)
+                return NotFound(new { Message = "Estoque não encontrado" });
+            
+            return Ok(estoque);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Message = "Erro interno do servidor" });
+        }
+    }
 
     [HttpGet("produto/{produtoId}")]
     public async Task<ActionResult<IEnumerable<ItemEstoque>>> ObterEstoqueProduto(int produtoId)

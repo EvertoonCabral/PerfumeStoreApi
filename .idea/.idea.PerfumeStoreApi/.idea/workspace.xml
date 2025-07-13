@@ -10,10 +10,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Enums/TipoMovimentacao.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/ItemEstoque.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/MovimentacaoEstoque.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/CreateEstoqueRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/EstoqueResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteCreateUpdateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteCreateUpdateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteDetalhesDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteDetalhesDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteFiltroDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteFiltroDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250429014324_AjusteRelacionamentoTabelas.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250429014324_AjusteRelacionamentoTabelas.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250628031726_AtualizandoBanco.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250628031726_AtualizandoBanco.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250628035124_AtualizandoModels.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250628035124_AtualizandoModels.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250712020039_AddEstoqueIdToProduto.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250712020039_AddEstoqueIdToProduto.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250712021413_AddEstoquePaDrao.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250712021413_AddEstoquePaDrao.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250713170340_tabelasEstoque.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250713170340_tabelasEstoque.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250713170649_removendoAtributoProduto.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/20250713170649_removendoAtributoProduto.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Enums/TipoMovimentacao.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Enums/TipoMovimentacao.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ClienteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ClienteRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/EstoqueRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/EstoqueRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IClienteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IClienteRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IEstoqueRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IEstoqueRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ItemEstoqueRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ItemEstoqueRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/MovimentacaoEstoqueRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/MovimentacaoEstoqueRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ProdutoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ProdutoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Repository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Repository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/VendaRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/VendaRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/ClienteService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/ClienteService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IClienteService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IClienteService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/IUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/IUnitOfWork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/UnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/UnitOfWork.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,22 +86,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.PerfumeStoreApi: http.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Launch Settings Profile.PerfumeStoreApi: https.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.PerfumeStoreApi: http.executor": "Debug",
+    ".NET Launch Settings Profile.PerfumeStoreApi: https.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "feature/ajustes-estoque",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PerfumeStoreApi: http">
     <configuration name="PerfumeStoreApi: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" />
@@ -136,6 +170,7 @@
       <workItem from="1751168233613" duration="4007000" />
       <workItem from="1751583967159" duration="4488000" />
       <workItem from="1752282794873" duration="8736000" />
+      <workItem from="1752415910074" duration="10710000" />
     </task>
     <servers />
   </component>

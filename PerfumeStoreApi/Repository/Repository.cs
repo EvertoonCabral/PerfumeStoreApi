@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
+using PerfumeStoreApi.Data;
 
 namespace PerfumeStoreApi.Repository;
 
@@ -17,14 +18,13 @@ public class Repository<T> : IRepository<T> where T : class
         _dbSet = context.Set<T>();
     }
     
-    public  async Task <IEnumerable<T>> GetAll()
+    public virtual async Task<IQueryable<T>> GetAll()
     {
-        return await _context.Set<T>().ToListAsync();
+        return await Task.FromResult(_context.Set<T>());
     }
 
     public async Task<T?> GetById(int id)
     {
-        
         return await _context.Set<T>().FindAsync(id);
     }
     

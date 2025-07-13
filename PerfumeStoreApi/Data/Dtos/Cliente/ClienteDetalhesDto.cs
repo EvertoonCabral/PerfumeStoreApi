@@ -1,4 +1,6 @@
-namespace PerfumeStoreApi.Context.Dtos;
+using PerfumeStoreApi.Context.Dtos;
+
+namespace PerfumeStoreApi.Data.Dtos.Cliente;
 
 public class ClienteDetalhesDto
 {
