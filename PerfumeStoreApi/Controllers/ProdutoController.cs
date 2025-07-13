@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Context.Dtos.ProdutoDTO;
+using PerfumeStoreApi.Data.Dtos.Produto;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;

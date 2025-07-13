@@ -16,9 +16,10 @@ public class EstoqueService : IEstoqueService
     private readonly IMapper _mapper;
 
 
-    public EstoqueService(IUnitOfWork unitOfWork)
+    public EstoqueService(IUnitOfWork unitOfWork,  IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
 
@@ -122,16 +123,49 @@ public async Task<List<EstoqueResponse>> ObterTodosEstoquesAsync()
 public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int quantidade, 
     TipoMovimentacao tipo, string? observacoes = null, string? usuarioResponsavel = null)
 {
+    if (quantidade <= 0)
+    {
+        throw new ArgumentException("Quantidade deve ser maior que zero.");
+    }
+
     using var transaction = await _unitOfWork.BeginTransactionAsync();
     
     try
     {
+        // Verificar se o produto existe
+        var produto = await _unitOfWork.ProdutoRepository.GetById(produtoId);
+        if (produto == null)
+        {
+            throw new InvalidOperationException("Produto não encontrado.");
+        }
+
+        // Verificar se o estoque existe
+        var estoque = await _unitOfWork.EstoqueRepository.GetById(estoqueId);
+        if (estoque == null)
+        {
+            throw new InvalidOperationException("Estoque não encontrado.");
+        }
+
         var itemEstoque = await ObterItemEstoqueAsync(produtoId, estoqueId);
         
         if (itemEstoque == null)
         {
-            // Criar novo item se não existir (para entradas)
-            if (tipo == TipoMovimentacao.Entrada)
+            // NOVA VALIDAÇÃO: Verificar se o produto já está vinculado a outro estoque
+            var estoqueExistente = await _unitOfWork.ItemEstoqueRepository
+                .GetByCondition(ie => ie.ProdutoId == produtoId)
+                .Include(ie => ie.Estoque)
+                .FirstOrDefaultAsync();
+
+            if (estoqueExistente != null)
+            {
+                throw new InvalidOperationException(
+                    $"Produto '{produto.Nome}' já está vinculado ao estoque '{estoqueExistente.Estoque.Nome}'. " +
+                    $"Para alterar o estoque, realize primeiro uma transferência ou remova o produto do estoque atual."
+                );
+            }
+
+            // Só permite criar novo ItemEstoque para movimentações que aumentam o estoque
+            if (tipo == TipoMovimentacao.Entrada || tipo == TipoMovimentacao.Devolucao)
             {
                 itemEstoque = new ItemEstoque
                 {
@@ -140,33 +174,22 @@ public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int
                     Quantidade = 0,
                     DataUltimaMovimentacao = DateTime.Now
                 };
+                
                 _unitOfWork.ItemEstoqueRepository.Create(itemEstoque);
-                
-                // Salvar para gerar o ID
                 await _unitOfWork.CommitAsync();
-                
-                // Recarregar o item para ter o ID correto
-                itemEstoque = await ObterItemEstoqueAsync(produtoId, estoqueId);
             }
             else
             {
-                throw new InvalidOperationException("Produto não encontrado no estoque.");
+                throw new InvalidOperationException($"Produto '{produto.Nome}' não possui estoque no local selecionado. Para produtos novos, realize primeiro uma entrada de estoque.");
             }
         }
 
         var quantidadeAnterior = itemEstoque.Quantidade;
-        var novaQuantidade = tipo switch
-        {
-            TipoMovimentacao.Entrada or TipoMovimentacao.Devolucao => quantidadeAnterior + quantidade,
-            TipoMovimentacao.Saida or TipoMovimentacao.Perda => quantidadeAnterior - quantidade,
-            TipoMovimentacao.Transferencia => quantidadeAnterior - quantidade,
-            TipoMovimentacao.Ajuste => quantidade,
-            _ => throw new ArgumentException("Tipo de movimentação não suportado")
-        };
+        var novaQuantidade = CalcularNovaQuantidade(quantidadeAnterior, quantidade, tipo);
 
         if (novaQuantidade < 0)
         {
-            throw new InvalidOperationException("Quantidade insuficiente em estoque.");
+            throw new InvalidOperationException($"Quantidade insuficiente em estoque. Disponível: {quantidadeAnterior}, Solicitado: {quantidade}");
         }
 
         // Atualizar quantidade
@@ -197,6 +220,26 @@ public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int
         await transaction.RollbackAsync();
         throw;
     }
+}
+
+// MÉTODO AUXILIAR: Verificar se produto já tem estoque vinculado
+private async Task<ItemEstoque?> ObterEstoqueVinculadoAsync(int produtoId)
+{
+    return await _unitOfWork.ItemEstoqueRepository
+        .GetByCondition(ie => ie.ProdutoId == produtoId)
+        .Include(ie => ie.Estoque)
+        .FirstOrDefaultAsync();
+}
+
+private static int CalcularNovaQuantidade(int quantidadeAnterior, int quantidade, TipoMovimentacao tipo)
+{
+    return tipo switch
+    {
+        TipoMovimentacao.Entrada or TipoMovimentacao.Devolucao => quantidadeAnterior + quantidade,
+        TipoMovimentacao.Saida or TipoMovimentacao.Perda or TipoMovimentacao.Transferencia => quantidadeAnterior - quantidade,
+        TipoMovimentacao.Ajuste => quantidade,
+        _ => throw new ArgumentException($"Tipo de movimentação '{tipo}' não suportado")
+    };
 }
 
     public async Task<bool> TransferirEstoqueAsync(int produtoId, int estoqueOrigemId, int estoqueDestinoId, 

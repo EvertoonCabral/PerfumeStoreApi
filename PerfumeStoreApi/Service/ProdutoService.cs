@@ -1,5 +1,7 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context.Dtos.ProdutoDTO;
+using PerfumeStoreApi.Data.Dtos.Produto;
 using PerfumeStoreApi.Service.Interfaces;
 
 namespace PerfumeStoreApi.Service;
@@ -33,14 +35,28 @@ public class ProdutoService : IProdutoService
 
     public async Task<GetProdutosDto?> ObterProdutoAsync(int id)
     {
-        var produto =  await _unitOfWork.ProdutoRepository.GetById(id);
-        
+        var produto = await _unitOfWork.ProdutoRepository
+            .GetByCondition(p => p.Id == id)
+            .Include(p => p.ItensEstoque)
+            .ThenInclude(ie => ie.Estoque)
+            .FirstOrDefaultAsync();
+    
         if (produto is null)
         {
-            throw new NullReferenceException("Produtos não encontrados");
+            return null;
         }
-         return _mapper.Map<GetProdutosDto>(produto);
-         
+    
+        var produtoDto = _mapper.Map<GetProdutosDto>(produto);
+    
+      // pegar o primeiro estoque
+        var primeiroEstoque = produto.ItensEstoque.FirstOrDefault();
+        if (primeiroEstoque != null)
+        {
+            // Assumindo que você tem uma propriedade EstoqueId no DTO
+             produtoDto.EstoqueId = primeiroEstoque.EstoqueId;
+        }
+    
+        return produtoDto;
     }
 
     public async Task<ProdutoDto?> CriarProdutoAsync(ProdutoCreateUpdateDto produtoDto)

@@ -3,6 +3,7 @@ using PerfumeStoreApi.Context.Dtos;
 using PerfumeStoreApi.Context.Dtos.ProdutoDTO;
 using PerfumeStoreApi.Data.Dtos.Cliente;
 using PerfumeStoreApi.Data.Dtos.Movimentação;
+using PerfumeStoreApi.Data.Dtos.Produto;
 using PerfumeStoreApi.Models;
 
 namespace PerfumeStoreApi.Profiles;
