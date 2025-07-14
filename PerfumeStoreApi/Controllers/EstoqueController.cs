@@ -73,7 +73,7 @@ public class EstoqueController : ControllerBase
         return Ok(itens);
     }
 
-    [HttpGet("produto/{produtoId}/totalProdutos")]
+    [HttpGet("produto/{produtoId}/TotalProdutos")]
     public async Task<ActionResult<int>> ObterQuantidadeTotal(int produtoId)
     {
         var total = await _estoqueService.ObterQuantidadeTotalProdutoAsync(produtoId);
@@ -94,7 +94,7 @@ public class EstoqueController : ControllerBase
         return Ok(itens);
     }
 
-    [HttpPost("movimentar")]
+    [HttpPost("MovimentarEstoque")]
     public async Task<ActionResult> MovimentarEstoque([FromBody] MovimentacaoRequest request)
     {
         try
@@ -123,7 +123,7 @@ public class EstoqueController : ControllerBase
         }
     }
 
-    [HttpPost("transferir")]
+    [HttpPost("TransferirEstoque")]
     public async Task<ActionResult> TransferirEstoque([FromBody] TransferenciaRequest request)
     {
         try
@@ -152,10 +152,10 @@ public class EstoqueController : ControllerBase
         }
     }
 
-    [HttpGet("historico/produto/{produtoId}")]
-    public async Task<ActionResult<IEnumerable<MovimentacaoEstoque>>> ObterHistorico(
+    [HttpGet("historico/produto/{produtoId}/ObterHistoricoProduto")]
+    public async Task<ActionResult<IEnumerable<MovimentacaoResponse>>> ObterHistorico(
         int produtoId, 
-        int? estoqueId = null, 
+        int? estoqueId = null,
         DateTime? dataInicio = null, 
         DateTime? dataFim = null)
     {

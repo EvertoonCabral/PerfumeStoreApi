@@ -20,7 +20,7 @@ public interface IEstoqueService
 
     Task<IEnumerable<ItemEstoqueResponse>> ObterItensComEstoqueBaixoAsync();
 
-    Task<IEnumerable<MovimentacaoEstoque>> ObterHistoricoMovimentacaoAsync(int produtoId, int? estoqueId = null,
+    Task<IEnumerable<MovimentacaoResponse>> ObterHistoricoMovimentacaoAsync(int produtoId, int? estoqueId = null,
         DateTime? dataInicio = null, DateTime? dataFim = null);
 
     Task<int> ObterQuantidadeTotalProdutoAsync(int produtoId);

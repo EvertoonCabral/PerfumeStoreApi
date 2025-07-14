@@ -30,5 +30,6 @@ public class AutoMaperProfiles : Profile
                         .ForMember(dest => dest.TotalProdutos, opt => opt.MapFrom(src => 
                                 src.ItensEstoque != null ? src.ItensEstoque.Count : 0));
                 CreateMap<ItemEstoque, ItemEstoqueResponse>().ReverseMap();
+                CreateMap<MovimentacaoEstoque, MovimentacaoResponse>().ReverseMap();
         }
 }

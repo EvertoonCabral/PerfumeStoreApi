@@ -1,6 +1,4 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Data.Dtos.ItemVenda;
 using PerfumeStoreApi.Data.Dtos.Movimentação;
@@ -291,7 +289,7 @@ private static int CalcularNovaQuantidade(int quantidadeAnterior, int quantidade
         
     }
 
-    public async Task<IEnumerable<MovimentacaoEstoque>> ObterHistoricoMovimentacaoAsync(int produtoId, 
+    public async Task<IEnumerable<MovimentacaoResponse>> ObterHistoricoMovimentacaoAsync(int produtoId, 
         int? estoqueId = null, DateTime? dataInicio = null, DateTime? dataFim = null)
     {
         var query = _unitOfWork.MovimentacaoEstoqueRepository
@@ -306,13 +304,17 @@ private static int CalcularNovaQuantidade(int quantidadeAnterior, int quantidade
         if (dataFim.HasValue)
             query = query.Where(m => m.DataMovimentacao <= dataFim.Value);
 
-        return await query
+        
+        var response = await query
             .Include(m => m.ItemEstoque)
             .ThenInclude(ie => ie.Produto)
             .Include(m => m.ItemEstoque)
             .ThenInclude(ie => ie.Estoque)
             .OrderByDescending(m => m.DataMovimentacao)
             .ToListAsync();
+        
+        return  _mapper.Map<IEnumerable<MovimentacaoResponse>>(response);
+        
     }
 
     public async Task<int> ObterQuantidadeTotalProdutoAsync(int produtoId)

@@ -10,14 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ItemEstoque/ItemEstoqueResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/ItemEstoque.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/ItemEstoque.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +44,12 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4b21fc3f8a3abb5d25f06c622276fbec0fd3932f169cc6af520bf5abc6a46b4/DbSet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/829d6ac6e62b9bee9ef8e79e827d87d0c31a7c2eefbc354135d9a8f2c4deb/Mapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a0b45f29f34f594814a7b1fbc25fe5ef3c18257956ed4f4fbfa68717db58/DbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Controllers/EstoqueController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Controllers/EstoqueController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoRequest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Service/EstoqueService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Service/EstoqueService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProjectColorInfo">{
@@ -141,7 +145,7 @@
       <workItem from="1751583967159" duration="4488000" />
       <workItem from="1752282794873" duration="8736000" />
       <workItem from="1752415910074" duration="18238000" />
-      <workItem from="1752452648278" duration="4320000" />
+      <workItem from="1752452648278" duration="6349000" />
     </task>
     <servers />
   </component>
@@ -179,6 +183,45 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs</url>
+          <line>297</line>
+          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\EstoqueService.cs" containingFunctionPresentation="Method 'ObterHistoricoMovimentacaoAsync'">
+            <startOffsets>
+              <option value="10742" />
+            </startOffsets>
+            <endOffsets>
+              <option value="10765" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs</url>
+          <line>161</line>
+          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Controllers\EstoqueController.cs" containingFunctionPresentation="Method 'ObterHistorico'">
+            <startOffsets>
+              <option value="5133" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5259" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs</url>
+          <line>163</line>
+          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Controllers\EstoqueController.cs" containingFunctionPresentation="Method 'ObterHistorico'">
+            <startOffsets>
+              <option value="5268" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5289" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
