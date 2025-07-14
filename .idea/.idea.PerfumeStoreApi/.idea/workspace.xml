@@ -10,13 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ItemEstoque/ItemEstoqueResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Produto/GetProdutosDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Produto/GetProdutosDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/ItemEstoque.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/ItemEstoque.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IProdutoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IProdutoService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/ProdutoService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,22 +56,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.PerfumeStoreApi: http.executor": "Debug",
-    ".NET Launch Settings Profile.PerfumeStoreApi: https.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/ajustes-estoque",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.PerfumeStoreApi: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.PerfumeStoreApi: https.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/ajustes-estoque&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PerfumeStoreApi: http">
     <configuration name="PerfumeStoreApi: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" />
@@ -140,7 +140,8 @@
       <workItem from="1751168233613" duration="4007000" />
       <workItem from="1751583967159" duration="4488000" />
       <workItem from="1752282794873" duration="8736000" />
-      <workItem from="1752415910074" duration="17555000" />
+      <workItem from="1752415910074" duration="18238000" />
+      <workItem from="1752452648278" duration="4320000" />
     </task>
     <servers />
   </component>

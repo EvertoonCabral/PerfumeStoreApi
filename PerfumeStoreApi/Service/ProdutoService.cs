@@ -45,10 +45,8 @@ public class ProdutoService : IProdutoService
         {
             return null;
         }
-    
         var produtoDto = _mapper.Map<GetProdutosDto>(produto);
-    
-      // pegar o primeiro estoque
+        
         var primeiroEstoque = produto.ItensEstoque.FirstOrDefault();
         if (primeiroEstoque != null)
         {

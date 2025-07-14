@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PerfumeStoreApi.Data.Dtos.ItemVenda;
 using PerfumeStoreApi.Data.Dtos.Movimentação;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Service.Interfaces;
@@ -65,29 +66,29 @@ public class EstoqueController : ControllerBase
         }
     }
 
-    [HttpGet("produto/{produtoId}")]
-    public async Task<ActionResult<IEnumerable<ItemEstoque>>> ObterEstoqueProduto(int produtoId)
+    [HttpGet("produto/{produtoId}/ObterEstoquePorProduto")]
+    public async Task<ActionResult<IEnumerable<ItemEstoqueResponse>>> ObterEstoqueProduto(int produtoId)
     {
         var itens = await _estoqueService.ObterEstoquePorProdutoAsync(produtoId);
         return Ok(itens);
     }
 
-    [HttpGet("produto/{produtoId}/total")]
+    [HttpGet("produto/{produtoId}/totalProdutos")]
     public async Task<ActionResult<int>> ObterQuantidadeTotal(int produtoId)
     {
         var total = await _estoqueService.ObterQuantidadeTotalProdutoAsync(produtoId);
         return Ok(total);
     }
 
-    [HttpGet("estoque/{estoqueId}")]
-    public async Task<ActionResult<IEnumerable<ItemEstoque>>> ObterItensEstoque(int estoqueId)
+    [HttpGet("estoque/{estoqueId}/ObterItensEstoque")]
+    public async Task<ActionResult<IEnumerable<ItemEstoqueResponse>>> ObterItensEstoque(int estoqueId)
     {
         var itens = await _estoqueService.ObterItensPorEstoqueAsync(estoqueId);
         return Ok(itens);
     }
 
     [HttpGet("estoque-baixo")]
-    public async Task<ActionResult<IEnumerable<ItemEstoque>>> ObterEstoqueBaixo()
+    public async Task<ActionResult<IEnumerable<ItemEstoqueResponse>>> ObterEstoqueBaixo()
     {
         var itens = await _estoqueService.ObterItensComEstoqueBaixoAsync();
         return Ok(itens);

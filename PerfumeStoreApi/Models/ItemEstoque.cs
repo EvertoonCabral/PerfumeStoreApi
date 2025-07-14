@@ -17,8 +17,8 @@ public class ItemEstoque
     
     [Required]
     public int Quantidade { get; set; }
-    public int? QuantidadeMinima { get; set; } // Para alertas
-    public int? QuantidadeMaxima { get; set; } // Para controle
+    public int? QuantidadeMinima { get; set; } 
+    public int? QuantidadeMaxima { get; set; } 
     
     public DateTime DataUltimaMovimentacao { get; set; } = DateTime.Now;
     

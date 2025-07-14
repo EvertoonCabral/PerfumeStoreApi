@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PerfumeStoreApi.Data.Dtos.ItemVenda;
 using PerfumeStoreApi.Data.Dtos.Movimentação;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Models.Enums;
@@ -104,20 +105,24 @@ public async Task<List<EstoqueResponse>> ObterTodosEstoquesAsync()
             .FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<ItemEstoque>> ObterEstoquePorProdutoAsync(int produtoId)
+    public async Task<IEnumerable<ItemEstoqueResponse>> ObterEstoquePorProdutoAsync(int produtoId)
     {
-        return await _unitOfWork.ItemEstoqueRepository
+        var esoques = await _unitOfWork.ItemEstoqueRepository
             .GetByCondition(ie => ie.ProdutoId == produtoId)
             .Include(ie => ie.Estoque)
             .ToListAsync();
+        
+        return _mapper.Map<IEnumerable<ItemEstoque>, List<ItemEstoqueResponse>>(esoques);
     }
 
-    public async Task<IEnumerable<ItemEstoque>> ObterItensPorEstoqueAsync(int estoqueId)
+    public async Task<IEnumerable<ItemEstoqueResponse>> ObterItensPorEstoqueAsync(int estoqueId)
     {
-        return await _unitOfWork.ItemEstoqueRepository
+        var itensPorEstoque = await _unitOfWork.ItemEstoqueRepository
             .GetByCondition(ie => ie.EstoqueId == estoqueId)
             .Include(ie => ie.Produto)
             .ToListAsync();
+        
+        return _mapper.Map<IEnumerable<ItemEstoque>, List<ItemEstoqueResponse>>(itensPorEstoque);
     }
 
 public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int quantidade, 
@@ -222,7 +227,6 @@ public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int
     }
 }
 
-// MÉTODO AUXILIAR: Verificar se produto já tem estoque vinculado
 private async Task<ItemEstoque?> ObterEstoqueVinculadoAsync(int produtoId)
 {
     return await _unitOfWork.ItemEstoqueRepository
@@ -275,13 +279,16 @@ private static int CalcularNovaQuantidade(int quantidadeAnterior, int quantidade
         }
     }
 
-    public async Task<IEnumerable<ItemEstoque>> ObterItensComEstoqueBaixoAsync()
+    public async Task<IEnumerable<ItemEstoqueResponse>> ObterItensComEstoqueBaixoAsync()
     {
-        return await _unitOfWork.ItemEstoqueRepository
+        var itensEstoque = await _unitOfWork.ItemEstoqueRepository
             .GetByCondition(ie => ie.QuantidadeMinima.HasValue && ie.Quantidade <= ie.QuantidadeMinima)
             .Include(ie => ie.Produto)
             .Include(ie => ie.Estoque)
             .ToListAsync();
+        
+        return _mapper.Map<IEnumerable<ItemEstoqueResponse>>(itensEstoque);
+        
     }
 
     public async Task<IEnumerable<MovimentacaoEstoque>> ObterHistoricoMovimentacaoAsync(int produtoId, 

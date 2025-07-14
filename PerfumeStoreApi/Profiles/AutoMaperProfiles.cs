@@ -2,6 +2,7 @@ using AutoMapper;
 using PerfumeStoreApi.Context.Dtos;
 using PerfumeStoreApi.Context.Dtos.ProdutoDTO;
 using PerfumeStoreApi.Data.Dtos.Cliente;
+using PerfumeStoreApi.Data.Dtos.ItemVenda;
 using PerfumeStoreApi.Data.Dtos.Movimentação;
 using PerfumeStoreApi.Data.Dtos.Produto;
 using PerfumeStoreApi.Models;
@@ -28,6 +29,6 @@ public class AutoMaperProfiles : Profile
                                 src.ItensEstoque != null ? src.ItensEstoque.Sum(ie => ie.Quantidade) : 0))
                         .ForMember(dest => dest.TotalProdutos, opt => opt.MapFrom(src => 
                                 src.ItensEstoque != null ? src.ItensEstoque.Count : 0));
-
+                CreateMap<ItemEstoque, ItemEstoqueResponse>().ReverseMap();
         }
 }
