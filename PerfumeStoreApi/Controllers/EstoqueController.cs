@@ -94,6 +94,21 @@ public class EstoqueController : ControllerBase
         return Ok(itens);
     }
 
+    /// <summary>
+    /// Movimenta um item no estoque.
+    /// </summary>
+    /// <remarks>
+    /// Tipos possíveis de movimentação:
+    /// <br/>• <b>Entrada</b> = 0
+    /// <br/>• <b>Saida</b> = 1
+    /// <br/>• <b>Transferencia</b> = 2
+    /// <br/>• <b>Ajuste</b> = 3
+    /// <br/>• <b>Perda</b> = 4
+    /// <br/>• <b>Devolucao</b> = 5
+    /// <br/>• <b>Criacao</b> = 6
+    /// </remarks>
+    /// <param name="request">Dados da movimentação do estoque.</param>
+    /// <returns>Mensagem de sucesso ou erro.</returns>
     [HttpPost("MovimentarEstoque")]
     public async Task<ActionResult> MovimentarEstoque([FromBody] MovimentacaoRequest request)
     {
@@ -122,6 +137,7 @@ public class EstoqueController : ControllerBase
             return StatusCode(500, new { Message = "Erro interno do servidor" });
         }
     }
+
 
     [HttpPost("TransferirEstoque")]
     public async Task<ActionResult> TransferirEstoque([FromBody] TransferenciaRequest request)

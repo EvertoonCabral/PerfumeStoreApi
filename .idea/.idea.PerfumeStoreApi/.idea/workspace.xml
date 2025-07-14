@@ -10,12 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +145,7 @@
       <workItem from="1751583967159" duration="4488000" />
       <workItem from="1752282794873" duration="8736000" />
       <workItem from="1752415910074" duration="18238000" />
-      <workItem from="1752452648278" duration="6349000" />
+      <workItem from="1752452648278" duration="7731000" />
     </task>
     <servers />
   </component>
@@ -195,32 +195,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs</url>
-          <line>161</line>
-          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Controllers\EstoqueController.cs" containingFunctionPresentation="Method 'ObterHistorico'">
-            <startOffsets>
-              <option value="5133" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5259" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs</url>
-          <line>163</line>
-          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Controllers\EstoqueController.cs" containingFunctionPresentation="Method 'ObterHistorico'">
-            <startOffsets>
-              <option value="5268" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5289" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
