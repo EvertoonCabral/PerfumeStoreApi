@@ -10,12 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Enums/StatusVenda.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Enums/TipoFormaPagamento.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Movimentação/MovimentacaoResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/ItemVenda.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/ItemVenda.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Pagamento.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Pagamento.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +67,7 @@
     &quot;.NET Launch Settings Profile.PerfumeStoreApi: https.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/ajustes-estoque&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -146,6 +147,8 @@
       <workItem from="1752282794873" duration="8736000" />
       <workItem from="1752415910074" duration="18238000" />
       <workItem from="1752452648278" duration="7731000" />
+      <workItem from="1752888255110" duration="140000" />
+      <workItem from="1753315444224" duration="1868000" />
     </task>
     <servers />
   </component>
@@ -185,13 +188,13 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs</url>
-          <line>297</line>
+          <line>296</line>
           <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\EstoqueService.cs" containingFunctionPresentation="Method 'ObterHistoricoMovimentacaoAsync'">
             <startOffsets>
-              <option value="10742" />
+              <option value="10570" />
             </startOffsets>
             <endOffsets>
-              <option value="10765" />
+              <option value="10593" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />

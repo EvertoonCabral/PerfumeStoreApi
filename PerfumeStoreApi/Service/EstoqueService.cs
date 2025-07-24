@@ -135,14 +135,14 @@ public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int
     
     try
     {
-        // Verificar se o produto existe
+        
         var produto = await _unitOfWork.ProdutoRepository.GetById(produtoId);
         if (produto == null)
         {
             throw new InvalidOperationException("Produto não encontrado.");
         }
 
-        // Verificar se o estoque existe
+
         var estoque = await _unitOfWork.EstoqueRepository.GetById(estoqueId);
         if (estoque == null)
         {
@@ -153,7 +153,7 @@ public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int
         
         if (itemEstoque == null)
         {
-            // NOVA VALIDAÇÃO: Verificar se o produto já está vinculado a outro estoque
+            //Validar se existe algum produto com o mesmo ID em outro estoque 
             var estoqueExistente = await _unitOfWork.ItemEstoqueRepository
                 .GetByCondition(ie => ie.ProdutoId == produtoId)
                 .Include(ie => ie.Estoque)
@@ -167,7 +167,6 @@ public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int
                 );
             }
 
-            // Só permite criar novo ItemEstoque para movimentações que aumentam o estoque
             if (tipo == TipoMovimentacao.Entrada || tipo == TipoMovimentacao.Devolucao)
             {
                 itemEstoque = new ItemEstoque
