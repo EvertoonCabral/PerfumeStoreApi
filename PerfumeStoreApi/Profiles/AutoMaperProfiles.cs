@@ -1,5 +1,7 @@
 using AutoMapper;
 using PerfumeStoreApi.Context.Dtos;
+using PerfumeStoreApi.Context.Dtos.ItemVenda;
+using PerfumeStoreApi.Context.Dtos.Pagamento;
 using PerfumeStoreApi.Context.Dtos.ProdutoDTO;
 using PerfumeStoreApi.Data.Dtos.Cliente;
 using PerfumeStoreApi.Data.Dtos.ItemVenda;
@@ -31,5 +33,40 @@ public class AutoMaperProfiles : Profile
                                 src.ItensEstoque != null ? src.ItensEstoque.Count : 0));
                 CreateMap<ItemEstoque, ItemEstoqueResponse>().ReverseMap();
                 CreateMap<MovimentacaoEstoque, MovimentacaoResponse>().ReverseMap();
+
+                CreateMap<Venda, VendaResponse>().ReverseMap();
+                
+                // ItemVenda Mappings
+                CreateMap<ItemVenda, ItemVendaResponse>()
+                        .ForMember(dest => dest.ProdutoNome, opt => opt.MapFrom(src => src.Produto.Nome))
+                        .ForMember(dest => dest.ProdutoMarca, opt => opt.MapFrom(src => src.Produto.Marca));
+
+                // Pagamento Mappings
+                CreateMap<Pagamento, PagamentoResponse>();
+
+                // Request para Entity (se necessário)
+                CreateMap<CreateVendaRequest, Venda>()
+                        .ForMember(dest => dest.Id, opt => opt.Ignore())
+                        .ForMember(dest => dest.DataVenda, opt => opt.Ignore())
+                        .ForMember(dest => dest.Status, opt => opt.Ignore())
+                        .ForMember(dest => dest.Cliente, opt => opt.Ignore())
+                        .ForMember(dest => dest.Itens, opt => opt.Ignore())
+                        .ForMember(dest => dest.Pagamentos, opt => opt.Ignore());
+
+                CreateMap<CreateItemVendaRequest, ItemVenda>()
+                        .ForMember(dest => dest.Id, opt => opt.Ignore())
+                        .ForMember(dest => dest.VendaId, opt => opt.Ignore())
+                        .ForMember(dest => dest.Venda, opt => opt.Ignore())
+                        .ForMember(dest => dest.Produto, opt => opt.Ignore())
+                        .ForMember(dest => dest.PrecoUnitario, opt => opt.Ignore()); // Será definido na lógica
+
+                CreateMap<CreatePagamentoRequest, Pagamento>()
+                        .ForMember(dest => dest.Id, opt => opt.Ignore())
+                        .ForMember(dest => dest.VendaId, opt => opt.Ignore())
+                        .ForMember(dest => dest.Venda, opt => opt.Ignore())
+                        .ForMember(dest => dest.DataPagamento, opt => opt.Ignore()) // Será definido na lógica
+                        .ForMember(dest => dest.DataVencimento, opt => opt.Ignore()); 
+                
+                
         }
 }
