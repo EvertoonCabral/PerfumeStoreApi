@@ -1,4 +1,4 @@
-# 🌸 PerfumeStore API
+#  PerfumeStore API
 
 <div align="center">
 
