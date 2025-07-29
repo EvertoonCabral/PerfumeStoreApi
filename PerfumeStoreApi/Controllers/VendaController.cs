@@ -9,6 +9,8 @@ using PerfumeStoreApi.Service.Interfaces;
 
 namespace PerfumeStoreApi.Controllers;
 
+[ApiController]
+[Route("api/[controller]")]
 public class VendaController : ControllerBase
 {
     private readonly IVendaService _vendaService;
@@ -86,7 +88,7 @@ public class VendaController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("ValidarEstoque")]
+    [HttpPost("/ValidarEstoque")]
     public async Task<IActionResult> ValidarEstoqueAsync([FromBody] ValidarEstoqueRequest request)
     {
         try

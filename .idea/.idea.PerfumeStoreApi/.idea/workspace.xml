@@ -10,14 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Venda/ValidarEstoqueRequest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/OperationResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/OperationResult.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/ClienteService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/ClienteService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IClienteService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IClienteService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IVendaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IVendaService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,6 +141,7 @@
       <workItem from="1753315444224" duration="5021000" />
       <workItem from="1753321939579" duration="1693000" />
       <workItem from="1753751243378" duration="4038000" />
+      <workItem from="1753808410451" duration="297000" />
     </task>
     <servers />
   </component>
