@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context.Dtos;
 using PerfumeStoreApi.Context.Dtos.ItemVenda;
 using PerfumeStoreApi.Context.Dtos.Pagamento;
+using PerfumeStoreApi.Data.Dtos;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Models.Enums;
 using PerfumeStoreApi.Service.Interfaces;
@@ -44,7 +45,7 @@ public class VendaService : IVendaService
         }
     }
 
-    public async Task<VendaResponse> CriarVendaAsync(CreateVendaRequest request)
+    public async Task<OperationResult<VendaResponse>> CriarVendaAsync(CreateVendaRequest request)
     {
         if (request.Itens == null || !request.Itens.Any())
         {
@@ -137,7 +138,7 @@ public class VendaService : IVendaService
         }
     }
 
-    public async Task<VendaResponse> FinalizarVendaAsync(int vendaId, List<CreatePagamentoRequest> pagamentos)
+    public async Task<OperationResult<VendaResponse>> FinalizarVendaAsync(int vendaId, List<CreatePagamentoRequest> pagamentos)
     {
         var venda = await _unitOfWork.VendaRepository
             .GetByCondition(v => v.Id == vendaId)
@@ -199,7 +200,7 @@ public class VendaService : IVendaService
         }
     }
 
-    public async Task<VendaResponse> CancelarVendaAsync(int vendaId, string motivo, string? usuarioResponsavel = null)
+    public async Task<OperationResult<VendaResponse>> CancelarVendaAsync(int vendaId, string motivo, string? usuarioResponsavel = null)
     {
         var venda = await _unitOfWork.VendaRepository
             .GetByCondition(v => v.Id == vendaId)
@@ -265,7 +266,7 @@ public class VendaService : IVendaService
         }
     }
 
-    public async Task<VendaResponse?> ObterVendaPorIdAsync(int id)
+    public async Task<OperationResult<VendaResponse>> ObterVendaPorIdAsync(int id)
     {
         var venda = await _unitOfWork.VendaRepository
             .GetByCondition(v => v.Id == id)
@@ -278,7 +279,7 @@ public class VendaService : IVendaService
         if (venda == null)
             return null;
 
-        return _mapper.Map<VendaResponse>(venda);
+        return _mapper.Map<OperationResult<VendaResponse>>(venda);
     }
 
     public async Task<List<VendaResponse>> ObterVendasAsync(DateTime? dataInicio = null, DateTime? dataFim = null, 

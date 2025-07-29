@@ -1,5 +1,6 @@
 using AutoMapper;
 using PerfumeStoreApi.Context.Dtos;
+using PerfumeStoreApi.Data.Dtos;
 using PerfumeStoreApi.Data.Dtos.Cliente;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Service.Interfaces;

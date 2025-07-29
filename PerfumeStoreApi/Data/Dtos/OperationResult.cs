@@ -1,4 +1,4 @@
-namespace PerfumeStoreApi.Context.Dtos;
+namespace PerfumeStoreApi.Data.Dtos;
 
 public class OperationResult<T>
 {
