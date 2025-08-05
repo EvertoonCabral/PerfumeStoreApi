@@ -13,7 +13,7 @@ public class VendaController : ControllerBase
 {
     private readonly IVendaService _vendaService;
 
-    public VendaController(VendaService vendaService)
+    public VendaController(IVendaService vendaService)
     {
         _vendaService = vendaService;
     }

@@ -131,97 +131,86 @@ public async Task<bool> MovimentarEstoqueAsync(int produtoId, int estoqueId, int
         throw new ArgumentException("Quantidade deve ser maior que zero.");
     }
 
-    using var transaction = await _unitOfWork.BeginTransactionAsync();
-    
-    try
+
+    var produto = await _unitOfWork.ProdutoRepository.GetById(produtoId);
+    if (produto == null)
     {
+        throw new InvalidOperationException("Produto não encontrado.");
+    }
+
+
+    var estoque = await _unitOfWork.EstoqueRepository.GetById(estoqueId);
+    if (estoque == null)
+    {
+        throw new InvalidOperationException("Estoque não encontrado.");
+    }
+
+    var itemEstoque = await ObterItemEstoqueAsync(produtoId, estoqueId);
         
-        var produto = await _unitOfWork.ProdutoRepository.GetById(produtoId);
-        if (produto == null)
+    if (itemEstoque == null)
+    {
+        //Validar se existe algum produto com o mesmo ID em outro estoque 
+        var estoqueExistente = await _unitOfWork.ItemEstoqueRepository
+            .GetByCondition(ie => ie.ProdutoId == produtoId)
+            .Include(ie => ie.Estoque)
+            .FirstOrDefaultAsync();
+
+        if (estoqueExistente != null)
         {
-            throw new InvalidOperationException("Produto não encontrado.");
+            throw new InvalidOperationException(
+                $"Produto '{produto.Nome}' já está vinculado ao estoque '{estoqueExistente.Estoque.Nome}'. " +
+                $"Para alterar o estoque, realize primeiro uma transferência ou remova o produto do estoque atual."
+            );
         }
 
-
-        var estoque = await _unitOfWork.EstoqueRepository.GetById(estoqueId);
-        if (estoque == null)
+        if (tipo == TipoMovimentacao.Entrada || tipo == TipoMovimentacao.Devolucao)
         {
-            throw new InvalidOperationException("Estoque não encontrado.");
-        }
-
-        var itemEstoque = await ObterItemEstoqueAsync(produtoId, estoqueId);
-        
-        if (itemEstoque == null)
-        {
-            //Validar se existe algum produto com o mesmo ID em outro estoque 
-            var estoqueExistente = await _unitOfWork.ItemEstoqueRepository
-                .GetByCondition(ie => ie.ProdutoId == produtoId)
-                .Include(ie => ie.Estoque)
-                .FirstOrDefaultAsync();
-
-            if (estoqueExistente != null)
+            itemEstoque = new ItemEstoque
             {
-                throw new InvalidOperationException(
-                    $"Produto '{produto.Nome}' já está vinculado ao estoque '{estoqueExistente.Estoque.Nome}'. " +
-                    $"Para alterar o estoque, realize primeiro uma transferência ou remova o produto do estoque atual."
-                );
-            }
-
-            if (tipo == TipoMovimentacao.Entrada || tipo == TipoMovimentacao.Devolucao)
-            {
-                itemEstoque = new ItemEstoque
-                {
-                    ProdutoId = produtoId,
-                    EstoqueId = estoqueId,
-                    Quantidade = 0,
-                    DataUltimaMovimentacao = DateTime.Now
-                };
+                ProdutoId = produtoId,
+                EstoqueId = estoqueId,
+                Quantidade = 0,
+                DataUltimaMovimentacao = DateTime.Now
+            };
                 
-                _unitOfWork.ItemEstoqueRepository.Create(itemEstoque);
-                await _unitOfWork.CommitAsync();
-            }
-            else
-            {
-                throw new InvalidOperationException($"Produto '{produto.Nome}' não possui estoque no local selecionado. Para produtos novos, realize primeiro uma entrada de estoque.");
-            }
+            _unitOfWork.ItemEstoqueRepository.Create(itemEstoque);
+            await _unitOfWork.CommitAsync();
         }
-
-        var quantidadeAnterior = itemEstoque.Quantidade;
-        var novaQuantidade = CalcularNovaQuantidade(quantidadeAnterior, quantidade, tipo);
-
-        if (novaQuantidade < 0)
+        else
         {
-            throw new InvalidOperationException($"Quantidade insuficiente em estoque. Disponível: {quantidadeAnterior}, Solicitado: {quantidade}");
+            throw new InvalidOperationException($"Produto '{produto.Nome}' não possui estoque no local selecionado. Para produtos novos, realize primeiro uma entrada de estoque.");
         }
-
-        // Atualizar quantidade
-        itemEstoque.Quantidade = novaQuantidade;
-        itemEstoque.DataUltimaMovimentacao = DateTime.Now;
-
-        // Registrar movimentação
-        var movimentacao = new MovimentacaoEstoque
-        {
-            ItemEstoqueId = itemEstoque.Id,
-            Tipo = tipo,
-            Quantidade = Math.Abs(quantidade),
-            QuantidadeAnterior = quantidadeAnterior,
-            QuantidadePosterior = novaQuantidade,
-            DataMovimentacao = DateTime.Now,
-            Observacoes = observacoes,
-            UsuarioResponsavel = usuarioResponsavel
-        };
-
-        _unitOfWork.MovimentacaoEstoqueRepository.Create(movimentacao);
-        await _unitOfWork.CommitAsync();
-        
-        await transaction.CommitAsync();
-        return true;
     }
-    catch
+
+    var quantidadeAnterior = itemEstoque.Quantidade;
+    var novaQuantidade = CalcularNovaQuantidade(quantidadeAnterior, quantidade, tipo);
+
+    if (novaQuantidade < 0)
     {
-        await transaction.RollbackAsync();
-        throw;
+        throw new InvalidOperationException($"Quantidade insuficiente em estoque. Disponível: {quantidadeAnterior}, Solicitado: {quantidade}");
     }
+
+    // Atualizar quantidade
+    itemEstoque.Quantidade = novaQuantidade;
+    itemEstoque.DataUltimaMovimentacao = DateTime.Now;
+
+    // Registrar movimentação
+    var movimentacao = new MovimentacaoEstoque
+    {
+        ItemEstoqueId = itemEstoque.Id,
+        Tipo = tipo,
+        Quantidade = Math.Abs(quantidade),
+        QuantidadeAnterior = quantidadeAnterior,
+        QuantidadePosterior = novaQuantidade,
+        DataMovimentacao = DateTime.Now,
+        Observacoes = observacoes,
+        UsuarioResponsavel = usuarioResponsavel
+    };
+
+    _unitOfWork.MovimentacaoEstoqueRepository.Create(movimentacao);
+    await _unitOfWork.CommitAsync();
+        
+    return true;
 }
 
 private async Task<ItemEstoque?> ObterEstoqueVinculadoAsync(int produtoId)

@@ -25,6 +25,22 @@ public class VendaService : IVendaService
         _estoqueService = estoqueService;
     }
 
+    
+    public async Task<OperationResult<VendaResponse>> ObterVendaPorIdAsync(int id)
+    {
+        var venda = await _unitOfWork.VendaRepository
+            .GetByCondition(v => v.Id == id)
+            .Include(v => v.Cliente)
+            .Include(v => v.Itens)
+            .ThenInclude(i => i.Produto)
+            .Include(v => v.Pagamentos)
+            .FirstOrDefaultAsync();
+
+        if (venda == null)
+            return null;
+
+        return _mapper.Map<OperationResult<VendaResponse>>(venda);
+    }
 
     public async Task ValidarEstoqueParaVendaAsync(List<CreateItemVendaRequest> itens, int estoqueId)
     {
@@ -266,21 +282,7 @@ public class VendaService : IVendaService
         }
     }
 
-    public async Task<OperationResult<VendaResponse>> ObterVendaPorIdAsync(int id)
-    {
-        var venda = await _unitOfWork.VendaRepository
-            .GetByCondition(v => v.Id == id)
-            .Include(v => v.Cliente)
-            .Include(v => v.Itens)
-            .ThenInclude(i => i.Produto)
-            .Include(v => v.Pagamentos)
-            .FirstOrDefaultAsync();
 
-        if (venda == null)
-            return null;
-
-        return _mapper.Map<OperationResult<VendaResponse>>(venda);
-    }
 
     public async Task<List<VendaResponse>> ObterVendasAsync(DateTime? dataInicio = null, DateTime? dataFim = null, 
         StatusVenda? status = null, int? clienteId = null)

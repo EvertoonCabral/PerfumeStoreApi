@@ -26,8 +26,8 @@ builder.Services.AddControllers()
 
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
-builder.Services.AddScoped<IEstoqueService, EstoqueService>();
 builder.Services.AddScoped<IVendaService, VendaService>();
+builder.Services.AddScoped<IEstoqueService, EstoqueService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<ProdutoRepository, ProdutoRepository>();
