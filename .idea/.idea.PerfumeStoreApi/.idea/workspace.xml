@@ -12,10 +12,6 @@
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +142,7 @@
       <workItem from="1753321939579" duration="1693000" />
       <workItem from="1753751243378" duration="5029000" />
       <workItem from="1753923235998" duration="13000" />
-      <workItem from="1754360340821" duration="2272000" />
+      <workItem from="1754360340821" duration="2624000" />
     </task>
     <servers />
   </component>
@@ -185,19 +181,6 @@
           <option name="timeStamp" value="3" />
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/EstoqueService.cs</url>
-          <line>285</line>
-          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\EstoqueService.cs" containingFunctionPresentation="Method 'ObterHistoricoMovimentacaoAsync'">
-            <startOffsets>
-              <option value="10081" />
-            </startOffsets>
-            <endOffsets>
-              <option value="10104" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs</url>
           <line>65</line>
           <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\VendaService.cs" containingFunctionPresentation="Method 'CriarVendaAsync'">
@@ -235,6 +218,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs</url>
+          <line>143</line>
+          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\VendaService.cs" containingFunctionPresentation="Method 'CriarVendaAsync'">
+            <startOffsets>
+              <option value="5198" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5230" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs</url>
+          <line>38</line>
+          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\VendaService.cs" containingFunctionPresentation="Method 'ObterVendaPorIdAsync'">
+            <startOffsets>
+              <option value="1185" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1203" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

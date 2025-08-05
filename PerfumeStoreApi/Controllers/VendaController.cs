@@ -21,7 +21,7 @@ public class VendaController : ControllerBase
     [HttpPost("/CadastrarVenda")]
     public async Task<ActionResult<VendaResponse>> CadastrarVendaAsync([FromBody] CreateVendaRequest request)
     {
-
+        //validar o metodo de criar venda, esta com mais de um commit, gerando possibilidade de alterar os dados em um momento do metodo e depois estourar uma expection e so meio processo ser salvo
         var resultado = await _vendaService.CriarVendaAsync(request);
 
         if (!resultado.Success)
