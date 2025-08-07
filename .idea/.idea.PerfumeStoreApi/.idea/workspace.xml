@@ -11,7 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +39,13 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/294078ecfce6fdb942ecfee089f09717de7a6fcfe5efd9fdb6f4f93c0fb4813/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4b21fc3f8a3abb5d25f06c622276fbec0fd3932f169cc6af520bf5abc6a46b4/DbSet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/829d6ac6e62b9bee9ef8e79e827d87d0c31a7c2eefbc354135d9a8f2c4deb/Mapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/96a4cc66aa48dda8a9d8be8febec4a769fc143f7a86dd53ecdebfb9c3177d/ControllerBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9eda537f15ea23cdfae523c19e87eb303a3ded88937ae7e55919387a43f70/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a0b45f29f34f594814a7b1fbc25fe5ef3c18257956ed4f4fbfa68717db58/DbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fb367341658aaedd7de424d4c9189db33c4387e268dcc4011918569442ab12/AsyncTaskMethodBuilderT.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProjectColorInfo">{
@@ -51,22 +56,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.PerfumeStoreApi: http.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Launch Settings Profile.PerfumeStoreApi: https.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.PerfumeStoreApi: http.executor": "Debug",
+    ".NET Launch Settings Profile.PerfumeStoreApi: https.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "XThreadsFramesViewSplitterKey": "0.05922551",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PerfumeStoreApi: http">
     <configuration name="PerfumeStoreApi: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" />
@@ -143,6 +149,8 @@
       <workItem from="1753751243378" duration="5029000" />
       <workItem from="1753923235998" duration="13000" />
       <workItem from="1754360340821" duration="2624000" />
+      <workItem from="1754445019787" duration="415000" />
+      <workItem from="1754530382517" duration="2609000" />
     </task>
     <servers />
   </component>
@@ -182,68 +190,16 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs</url>
-          <line>65</line>
-          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\VendaService.cs" containingFunctionPresentation="Method 'CriarVendaAsync'">
-            <startOffsets>
-              <option value="2274" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2324" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs</url>
-          <line>128</line>
-          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\VendaService.cs" containingFunctionPresentation="Method 'CriarVendaAsync'">
-            <startOffsets>
-              <option value="4664" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4696" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs</url>
-          <line>133</line>
-          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\VendaService.cs" containingFunctionPresentation="Method 'CriarVendaAsync'">
-            <startOffsets>
-              <option value="4822" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5170" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs</url>
-          <line>143</line>
-          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\VendaService.cs" containingFunctionPresentation="Method 'CriarVendaAsync'">
-            <startOffsets>
-              <option value="5198" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5230" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs</url>
-          <line>38</line>
+          <line>30</line>
           <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Service\VendaService.cs" containingFunctionPresentation="Method 'ObterVendaPorIdAsync'">
             <startOffsets>
-              <option value="1185" />
+              <option value="896" />
             </startOffsets>
             <endOffsets>
-              <option value="1203" />
+              <option value="1175" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

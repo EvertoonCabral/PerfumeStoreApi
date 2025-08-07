@@ -31,11 +31,7 @@ public class VendaController : ControllerBase
             return BadRequest(resultado.Errors);
         }
 
-        return CreatedAtAction(
-            nameof(ObterVendaPorIdAsync),
-            new { id = resultado.Data!.Id },
-            resultado.Data
-        );
+        return Ok(resultado.Data);
     }
 
     [HttpGet("/ObterVendaPorId/{id}")]

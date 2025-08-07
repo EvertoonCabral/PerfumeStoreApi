@@ -37,10 +37,13 @@ public class VendaService : IVendaService
             .FirstOrDefaultAsync();
 
         if (venda == null)
-            return null;
+            return OperationResult<VendaResponse>.CreateFailure("Venda não encontrada");
 
-        return _mapper.Map<OperationResult<VendaResponse>>(venda);
+        var vendaResponse = _mapper.Map<VendaResponse>(venda);
+
+        return OperationResult<VendaResponse>.CreateSuccess(vendaResponse);
     }
+
 
     public async Task ValidarEstoqueParaVendaAsync(List<CreateItemVendaRequest> itens, int estoqueId)
     {
@@ -126,8 +129,9 @@ public class VendaService : IVendaService
 
             // 6. Salvar venda
             _unitOfWork.VendaRepository.Create(venda);
-            await _unitOfWork.CommitAsync();
-
+            
+            await transaction.CommitAsync();
+            
             // 7. Baixar estoque para cada item
             foreach (var item in venda.Itens)
             {
@@ -140,8 +144,6 @@ public class VendaService : IVendaService
                     request.UsuarioVendedor
                 );
             }
-
-            await transaction.CommitAsync();
 
             // 8. Retornar response
             var vendaCriada = await ObterVendaPorIdAsync(venda.Id);
