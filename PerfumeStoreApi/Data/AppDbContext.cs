@@ -13,6 +13,12 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<Usuario>()
+            .HasOne(u => u.Cliente)
+            .WithOne(c => c.Usuario)
+            .HasForeignKey<Usuario>(u => u.ClienteId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Produto>()
             .Property(p => p.PrecoCompra)
@@ -52,6 +58,7 @@ public class AppDbContext : DbContext
 
 
     public DbSet<Cliente> Clientes { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Produto> Produtos { get; set; }
     public DbSet<Venda> Vendas { get; set; }
     public DbSet<ItemVenda> ItemVendas { get; set; }

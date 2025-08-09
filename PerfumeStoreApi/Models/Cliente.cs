@@ -19,4 +19,7 @@ public class Cliente
     public bool IsAtivo { get; set; } = true;
     public DateTime DataCadastro { get; set; } = DateTime.Now; // Novo campo
     public virtual ICollection<Venda> Vendas { get; set; }
+    
+    public virtual Usuario? Usuario { get; set; }
+
 }

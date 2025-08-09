@@ -4,6 +4,7 @@ using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Context.Dtos;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using PerfumeStoreApi.Data.Dtos.Cliente;
 using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;
@@ -25,6 +26,7 @@ public class ClienteController : ControllerBase
     /// Retorna todos os clientes com paginação e filtros
     /// </summary>
     [HttpGet]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<PagedResult<ClienteDto>>> GetClientes([FromQuery] ClienteFiltroDto filtros)

@@ -22,7 +22,6 @@ public class ItemEstoque
     
     public DateTime DataUltimaMovimentacao { get; set; } = DateTime.Now;
     
-    // Navegação para movimentações
     public virtual ICollection<MovimentacaoEstoque> Movimentacoes { get; set; } = new List<MovimentacaoEstoque>();   
 }
 

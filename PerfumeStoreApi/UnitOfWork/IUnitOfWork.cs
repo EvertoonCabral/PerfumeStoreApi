@@ -13,6 +13,7 @@ public interface IUnitOfWork
     IProdutoRepository ProdutoRepository { get; }
     IClienteRepository ClienteRepository { get; }
     IVendaRepository VendaRepository { get; }
+    IUsuarioRepository UsuarioRepository { get; }
 
     void Commit();
 

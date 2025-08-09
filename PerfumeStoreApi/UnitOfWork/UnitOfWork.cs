@@ -14,6 +14,7 @@ public class UnitOfWork : IUnitOfWork
     private IEstoqueRepository _estoqueRepo;
     private IItemEstoqueRepository _itemEstoqueRepo;
     private IMovimentacaoEstoqueRepository _movimentacaoEstoqueRepo;
+    private IUsuarioRepository _usuarioRepo;
     private readonly AppDbContext _context; 
 
 
@@ -30,6 +31,16 @@ public class UnitOfWork : IUnitOfWork
         }
      
     }
+    
+    public IUsuarioRepository UsuarioRepository
+    {
+        get
+        {
+            return _usuarioRepo ??= new UsuarioRepository(_context);
+        }
+     
+    }
+
     
     public IEstoqueRepository EstoqueRepository
     {
