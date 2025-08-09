@@ -70,8 +70,34 @@ public class VendaController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Finaliza uma venda pendente, registrando os pagamentos.
+    /// </summary>
+    /// <param name="vendaId">ID da venda a ser finalizada.</param>
+    /// <param name="pagamentos">
+    /// Formas de pagamento disponíveis:
+    /// <list type="bullet">
+    /// <item>
+    /// <description>1 - Dinheiro</description>
+    /// </item>
+    /// <item>
+    /// <description>2 - Cartão de Crédito</description>
+    /// </item>
+    /// <item>
+    /// <description>3 - Cartão de Débito</description>
+    /// </item>
+    /// <item>
+    /// <description>4 - PIX</description>
+    /// </item>
+    /// <item>
+    /// <description>5 - Crediário (pagamento em 30 dias)</description>
+    /// </item>
+    /// </list>
+    /// </param>
+    /// <returns>Retorna o resultado da operação com os dados da venda finalizada.</returns>
     [HttpPut("/FinalizarVenda")]
-    public async Task<ActionResult<OperationResult<VendaResponse>>> FinalizarVendaAsync(int vendaId,
+    public async Task<ActionResult<OperationResult<VendaResponse>>> FinalizarVendaAsync(
+        int vendaId,
         List<CreatePagamentoRequest> pagamentos)
     {
         var result = await _vendaService.FinalizarVendaAsync(vendaId, pagamentos);
@@ -83,6 +109,7 @@ public class VendaController : ControllerBase
 
         return Ok(result);
     }
+
 
     [HttpPost("/ValidarEstoque")]
     public async Task<IActionResult> ValidarEstoqueAsync([FromBody] ValidarEstoqueRequest request)

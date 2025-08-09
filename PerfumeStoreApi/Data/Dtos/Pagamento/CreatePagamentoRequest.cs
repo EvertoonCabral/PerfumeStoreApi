@@ -8,5 +8,4 @@ public class CreatePagamentoRequest
     public TipoFormaPagamento FormaPagamento { get; set; }
     public DateTime? DataPagamento { get; set; } // Se null, usa DateTime.Now
     public string? Observacoes { get; set; }
-    public string? NumeroTransacao { get; set; }
 }

@@ -248,7 +248,7 @@ public class VendaService : IVendaService
                 {
                     // Encontrar o estoque onde foi feita a baixa (buscar pela movimentação)
                     var movimentacao = await _unitOfWork.MovimentacaoEstoqueRepository
-                        .GetByCondition(m => m.Observacoes.Contains($"Venda #{vendaId}") && 
+                        .GetByCondition(m => m.Observacoes.Contains($"Venda #{vendaId} ") && 
                                            m.ItemEstoque.ProdutoId == item.ProdutoId &&
                                            m.Tipo == TipoMovimentacao.Saida)
                         .Include(m => m.ItemEstoque)
@@ -269,13 +269,14 @@ public class VendaService : IVendaService
             }
 
             // Cancelar venda
-            venda.Status = StatusVenda.Cancelada;
-            venda.Observacoes = "Venda Cancelada";
+                venda.Status = StatusVenda.Cancelada;
+                venda.Observacoes = $"{motivo}";
 
-            await _unitOfWork.CommitAsync();
-            await transaction.CommitAsync();
+                await _unitOfWork.CommitAsync();
+                await transaction.CommitAsync();
 
-            return await ObterVendaPorIdAsync(vendaId);
+                return await ObterVendaPorIdAsync(vendaId);
+
         }
         catch
         {
