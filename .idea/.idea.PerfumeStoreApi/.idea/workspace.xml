@@ -10,17 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Filters/OpenApiVersionDocumentFilter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IAuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IAuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +173,7 @@
       <workItem from="1754695732625" duration="11761000" />
       <workItem from="1754788407095" duration="273000" />
       <workItem from="1754788796499" duration="58000" />
-      <workItem from="1754799486904" duration="5250000" />
+      <workItem from="1754799486904" duration="5822000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
@@ -24,6 +25,7 @@ public class ProdutoController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<ICollection<GetProdutosDto>>> GetProdutos()
     {
         var produtos = await _produtoService.ListarProdutosTodosAsync();
@@ -37,6 +39,7 @@ public class ProdutoController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<ActionResult<GetProdutosDto>> GetProduto(int id)
     {
         var produto = await _produtoService.ObterProdutoAsync(id);
@@ -49,6 +52,7 @@ public class ProdutoController : ControllerBase
         return Ok(produto);
     }
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<IActionResult> AlterarProduto(int id, ProdutoCreateUpdateDto produtoDto)
     {
         var atualizado = await _produtoService.AtualizarProdutoAsync(id, produtoDto);
@@ -61,6 +65,7 @@ public class ProdutoController : ControllerBase
 
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<ProdutoDto>> CadastrarProduto(ProdutoCreateUpdateDto produto)
     {
         var novoProduto = await _produtoService.CriarProdutoAsync(produto);
@@ -69,6 +74,7 @@ public class ProdutoController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<ActionResult<ProdutoDto>> ExcluirProduto(int id)
     {
         var produto = await _produtoService.ObterProdutoAsync(id);

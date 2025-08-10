@@ -45,6 +45,7 @@ public class ClienteController : ControllerBase
     /// Retorna um cliente específico por ID
     /// </summary>
     [HttpGet("{id:int}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -66,6 +67,7 @@ public class ClienteController : ControllerBase
     /// Retorna detalhes completos do cliente incluindo histórico de vendas
     /// </summary>
     [HttpGet("{id:int}/detalhes")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ClienteDetalhesDto>> GetClienteDetalhes(int id)
@@ -86,6 +88,7 @@ public class ClienteController : ControllerBase
     /// Cria um novo cliente
     /// </summary>
     [HttpPost]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
@@ -115,6 +118,7 @@ public class ClienteController : ControllerBase
     /// Atualiza um cliente existente
     /// </summary>
     [HttpPut("{id:int}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -146,6 +150,7 @@ public class ClienteController : ControllerBase
     /// Desativa um cliente (soft delete)
     /// </summary>
     [HttpPatch("{id:int}/desativar")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult> DesativarCliente(int id)
@@ -166,6 +171,7 @@ public class ClienteController : ControllerBase
     /// Remove um cliente permanentemente (apenas se não tiver vendas)
     /// </summary>
     [HttpDelete("{id:int}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
