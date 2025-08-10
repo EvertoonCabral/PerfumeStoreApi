@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PerfumeStoreApi.Context.Dtos;
@@ -10,6 +11,7 @@ using PerfumeStoreApi.Service.Interfaces;
 namespace PerfumeStoreApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class VendaController : ControllerBase
 {

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PerfumeStoreApi.Data.Dtos.ItemVenda;
 using PerfumeStoreApi.Data.Dtos.Movimentação;
@@ -7,6 +8,7 @@ using PerfumeStoreApi.Service.Interfaces;
 namespace PerfumeStoreApi.Controllers;
 
 [Route("api/[controller]")]
+[Authorize]
 [ApiController]
 public class EstoqueController : ControllerBase
 {
