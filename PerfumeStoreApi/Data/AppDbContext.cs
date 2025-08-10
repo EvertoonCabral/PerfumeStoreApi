@@ -20,6 +20,10 @@ public class AppDbContext : DbContext
             .HasForeignKey<Usuario>(u => u.ClienteId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Usuario>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
+        
         modelBuilder.Entity<Produto>()
             .Property(p => p.PrecoCompra)
             .HasPrecision(10, 2);

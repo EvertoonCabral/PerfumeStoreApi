@@ -2,7 +2,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using PerfumeStoreApi.Data.Dtos;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;
@@ -23,8 +26,24 @@ public class AuthService : IAuthService
     }
 
 
-    public async Task<string> RegistrarAsync(Usuario usuario, string senha)
+    public async Task<OperationResult<string>> RegistrarAsync(Usuario usuario, string senha)
     {
+        var existente = await _unitOfWork.UsuarioRepository
+            .GetByCondition(u => 
+                (usuario.ClienteId.HasValue && u.ClienteId == usuario.ClienteId) ||
+                u.Email.ToLower() == usuario.Email.ToLower()
+            )
+            .FirstOrDefaultAsync();
+
+        if (existente != null)
+        {
+            if (usuario.ClienteId.HasValue && existente.ClienteId == usuario.ClienteId)
+                return OperationResult<string>.CreateFailure("Já existe um usuário vinculado a este cliente.");
+
+            if (existente.Email.ToLower() == usuario.Email.ToLower())
+                return OperationResult<string>.CreateFailure("Email já cadastrado.");
+        }
+
         CriarSenhaHash(senha, out byte[] hash, out byte[] salt);
         usuario.SenhaHash = hash;
         usuario.SenhaSalt = salt;
@@ -32,19 +51,18 @@ public class AuthService : IAuthService
         _unitOfWork.UsuarioRepository.Create(usuario);
         await _unitOfWork.CommitAsync();
 
-        return GerarToken(usuario);
+        var token = GerarToken(usuario);
+        return OperationResult<string>.CreateSuccess(token, "Usuário registrado com sucesso.");
     }
-
-    public async Task<string?> LoginAsync(string email, string senha)
+    public async Task<OperationResult<string>> LoginAsync(string email, string senha)
     {
         var usuario = await _unitOfWork.UsuarioRepository.GetByEmailAsync(email);
         if (usuario == null || !VerificarSenhaHash(senha, usuario.SenhaHash, usuario.SenhaSalt))
-            return null;
+            OperationResult<string>.CreateFailure("Credenciais inválidas.");
 
-        return GerarToken(usuario);
+        var token =  GerarToken(usuario);
+        return OperationResult<string>.CreateSuccess(token, "Login realizado com sucesso.");
     }
-    
-    
     private void CriarSenhaHash(string senha, out byte[] hash, out byte[] salt)
     {
         using var hmac = new HMACSHA512();

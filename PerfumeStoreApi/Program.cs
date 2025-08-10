@@ -11,11 +11,9 @@ using PerfumeStoreApi.Service.Interfaces;
 using PerfumeStoreApi.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
-
-
+using PerfumeStoreApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -33,24 +31,30 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-//Swagger
+//Swagger - Configuração corrigida
 builder.Services.AddSwaggerGen(c =>
 {
-    
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
         Title = "Store API",
-        Description = "API com autenticação JWT e Swagger"
+        Description = "API para gestão de vendas e movimentações de estoque",
+        Contact = new OpenApiContact
+        {
+            Name = "Everton Cabral",
+            Email = "evertoncabral.dev1@gmail.com"
+        }
     });
 
+    // Aplica o filtro para garantir a versão OpenAPI
+    c.DocumentFilter<OpenApiVersionDocumentFilter>();
 
     // Configuração de Autenticação JWT no Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer",
+        Type = SecuritySchemeType.Http, 
+        Scheme = "bearer", 
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
         Description = "Digite 'Bearer' [espaço] e o seu token JWT."
@@ -71,6 +75,7 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 
+    // Configuração para incluir comentários XML
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     if (File.Exists(xmlPath))
@@ -79,13 +84,13 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseLazyLoadingProxies().UseSqlServer(connectionString);
 });
-
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddScoped<IVendaService, VendaService>();
@@ -117,6 +122,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Store API v1");
+        c.RoutePrefix = string.Empty; 
     });
 }
 

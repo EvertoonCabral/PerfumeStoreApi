@@ -36,15 +36,12 @@ public class AutoMaperProfiles : Profile
 
                 CreateMap<Venda, VendaResponse>().ReverseMap();
                 
-                // ItemVenda Mappings
                 CreateMap<ItemVenda, ItemVendaResponse>()
                         .ForMember(dest => dest.ProdutoNome, opt => opt.MapFrom(src => src.Produto.Nome))
                         .ForMember(dest => dest.ProdutoMarca, opt => opt.MapFrom(src => src.Produto.Marca));
 
-                // Pagamento Mappings
                 CreateMap<Pagamento, PagamentoResponse>();
 
-                // Request para Entity (se necessário)
                 CreateMap<CreateVendaRequest, Venda>()
                         .ForMember(dest => dest.Id, opt => opt.Ignore())
                         .ForMember(dest => dest.DataVenda, opt => opt.Ignore())
@@ -58,13 +55,13 @@ public class AutoMaperProfiles : Profile
                         .ForMember(dest => dest.VendaId, opt => opt.Ignore())
                         .ForMember(dest => dest.Venda, opt => opt.Ignore())
                         .ForMember(dest => dest.Produto, opt => opt.Ignore())
-                        .ForMember(dest => dest.PrecoUnitario, opt => opt.Ignore()); // Será definido na lógica
+                        .ForMember(dest => dest.PrecoUnitario, opt => opt.Ignore()); 
 
                 CreateMap<CreatePagamentoRequest, Pagamento>()
                         .ForMember(dest => dest.Id, opt => opt.Ignore())
                         .ForMember(dest => dest.VendaId, opt => opt.Ignore())
                         .ForMember(dest => dest.Venda, opt => opt.Ignore())
-                        .ForMember(dest => dest.DataPagamento, opt => opt.Ignore()) // Será definido na lógica
+                        .ForMember(dest => dest.DataPagamento, opt => opt.Ignore()) 
                         .ForMember(dest => dest.DataVencimento, opt => opt.Ignore()); 
                 
                 

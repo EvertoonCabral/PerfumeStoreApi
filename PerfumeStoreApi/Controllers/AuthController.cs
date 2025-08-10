@@ -13,16 +13,25 @@ public class AuthController : ControllerBase
 {
 
     private readonly IAuthService _authService;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public AuthController(IAuthService authService)
+    public AuthController(IAuthService authService, IUnitOfWork unitOfWork)
     {
         _authService = authService;
+        _unitOfWork = unitOfWork;
     }
 
 
     [HttpPost("register")]
     public async Task<IActionResult> Register(UsuarioRegisterDto dto)
     {
+        if (dto.ClienteId.HasValue)
+        {
+            var cliente = await _unitOfWork.ClienteRepository.GetById(dto.ClienteId.Value);
+            if (cliente == null)
+                return BadRequest("Cliente não encontrado");
+        }
+        
         var usuario = new Usuario
         {
             Nome = dto.Nome,
@@ -30,18 +39,23 @@ public class AuthController : ControllerBase
             ClienteId = dto.ClienteId 
         };
 
-        var token = await _authService.RegistrarAsync(usuario, dto.Senha);
-        return Ok(new { token });
+        var result = await _authService.RegistrarAsync(usuario, dto.Senha);
+        
+        if (!result.Success)
+            return BadRequest(result);
+        
+        return Ok(result);
     }
     
     [HttpPost("login")]
     public async Task<IActionResult> Login(UsuarioLoginDto dto)
     {
-        var token = await _authService.LoginAsync(dto.Email, dto.Senha);
-        if (token == null)
-            return Unauthorized("Credenciais inválidas");
+        var result = await _authService.LoginAsync(dto.Email, dto.Senha);
 
-        return Ok(new { token });
+        if (!result.Success)
+            return Unauthorized(result);
+
+        return Ok(result);
     }
     
 }
