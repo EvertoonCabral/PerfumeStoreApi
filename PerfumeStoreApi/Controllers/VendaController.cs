@@ -22,7 +22,7 @@ public class VendaController : ControllerBase
         _vendaService = vendaService;
     }
 
-    [HttpPost("/CadastrarVenda")]
+    [HttpPost("CadastrarVenda")]
     public async Task<ActionResult<VendaResponse>> CadastrarVendaAsync([FromBody] CreateVendaRequest request)
     {
         //validar o metodo de criar venda, esta com mais de um commit, gerando possibilidade de alterar os dados em um momento do metodo e depois estourar uma expection e so meio processo ser salvo
@@ -36,7 +36,7 @@ public class VendaController : ControllerBase
         return Ok(resultado.Data);
     }
 
-    [HttpGet("/ObterVendaPorId/{id}")]
+    [HttpGet("ObterVendaPorId/{id}")]
     public async Task<ActionResult<VendaResponse>> ObterVendaPorIdAsync(int id)
     {
         var resultado = await _vendaService.ObterVendaPorIdAsync(id);
@@ -47,7 +47,7 @@ public class VendaController : ControllerBase
         return Ok(resultado.Data);
     }
 
-    [HttpGet("/ObterVendas")]
+    [HttpGet("ObterVendas")]
     public async Task<ActionResult<List<VendaResponse>>> ObterVendasAsync()
     {
         var resultado = await _vendaService.ObterVendasAsync();
@@ -59,7 +59,7 @@ public class VendaController : ControllerBase
         return Ok(resultado);
     }
 
-    [HttpPut("/CancelarVenda")]
+    [HttpPut("CancelarVenda")]
     public async Task<ActionResult<VendaResponse>> CancelarVendaAsync(int id, string motivo, string? usuarioResponsavel)
     {
         var result = await _vendaService.CancelarVendaAsync(id, motivo, "ADMIN");
@@ -97,7 +97,7 @@ public class VendaController : ControllerBase
     /// </list>
     /// </param>
     /// <returns>Retorna o resultado da operação com os dados da venda finalizada.</returns>
-    [HttpPut("/FinalizarVenda")]
+    [HttpPut("FinalizarVenda")]
     public async Task<ActionResult<OperationResult<VendaResponse>>> FinalizarVendaAsync(
         int vendaId,
         List<CreatePagamentoRequest> pagamentos)
@@ -113,7 +113,7 @@ public class VendaController : ControllerBase
     }
 
 
-    [HttpPost("/ValidarEstoque")]
+    [HttpPost("ValidarEstoque")]
     public async Task<IActionResult> ValidarEstoqueAsync([FromBody] ValidarEstoqueRequest request)
     {
         try
