@@ -37,7 +37,7 @@ public class VendaController : ControllerBase
     }
 
     [HttpGet("ObterVendaPorId/{id}")]
-    public async Task<ActionResult<VendaResponse>> ObterVendaPorIdAsync(int id)
+    public async Task<ActionResult<VendaResponseDetail>> ObterVendaPorIdAsync(int id)
     {
         var resultado = await _vendaService.ObterVendaPorIdAsync(id);
 

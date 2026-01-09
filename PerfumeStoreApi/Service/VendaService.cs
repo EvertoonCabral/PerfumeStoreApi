@@ -26,7 +26,7 @@ public class VendaService : IVendaService
     }
 
     
-    public async Task<OperationResult<VendaResponse>> ObterVendaPorIdAsync(int id)
+    public async Task<OperationResult<VendaResponseDetail>> ObterVendaPorIdAsync(int id)
     {
         var venda = await _unitOfWork.VendaRepository
             .GetByCondition(v => v.Id == id)
@@ -37,11 +37,11 @@ public class VendaService : IVendaService
             .FirstOrDefaultAsync();
 
         if (venda == null)
-            return OperationResult<VendaResponse>.CreateFailure("Venda não encontrada");
+            return OperationResult<VendaResponseDetail>.CreateFailure("Venda não encontrada");
 
-        var vendaResponse = _mapper.Map<VendaResponse>(venda);
+        var vendaResponse = _mapper.Map<VendaResponseDetail>(venda);
 
-        return OperationResult<VendaResponse>.CreateSuccess(vendaResponse);
+        return OperationResult<VendaResponseDetail>.CreateSuccess(vendaResponse);
     }
 
 
@@ -64,7 +64,7 @@ public class VendaService : IVendaService
         }
     }
 
-    public async Task<OperationResult<VendaResponse>> CriarVendaAsync(CreateVendaRequest request)
+    public async Task<OperationResult<VendaResponseDetail>> CriarVendaAsync(CreateVendaRequest request)
     {
         if (request.Itens == null || !request.Itens.Any())
         {
@@ -156,7 +156,7 @@ public class VendaService : IVendaService
         }
     }
 
-    public async Task<OperationResult<VendaResponse>> FinalizarVendaAsync(int vendaId, List<CreatePagamentoRequest> pagamentos)
+    public async Task<OperationResult<VendaResponseDetail>> FinalizarVendaAsync(int vendaId, List<CreatePagamentoRequest> pagamentos)
     {
         var venda = await _unitOfWork.VendaRepository
             .GetByCondition(v => v.Id == vendaId)
@@ -218,7 +218,7 @@ public class VendaService : IVendaService
         }
     }
 
-    public async Task<OperationResult<VendaResponse>> CancelarVendaAsync(int vendaId, string motivo, string? usuarioResponsavel = null)
+    public async Task<OperationResult<VendaResponseDetail>> CancelarVendaAsync(int vendaId, string motivo, string? usuarioResponsavel = null)
     {
         var venda = await _unitOfWork.VendaRepository
             .GetByCondition(v => v.Id == vendaId)

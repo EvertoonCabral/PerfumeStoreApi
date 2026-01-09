@@ -35,6 +35,8 @@ public class AutoMaperProfiles : Profile
                 CreateMap<MovimentacaoEstoque, MovimentacaoResponse>().ReverseMap();
 
                 CreateMap<Venda, VendaResponse>().ReverseMap();
+                CreateMap<Venda, VendaResponseDetail>().ReverseMap();
+
                 
                 CreateMap<ItemVenda, ItemVendaResponse>()
                         .ForMember(dest => dest.ProdutoNome, opt => opt.MapFrom(src => src.Produto.Nome))
