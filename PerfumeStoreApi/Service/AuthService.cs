@@ -29,17 +29,13 @@ public class AuthService : IAuthService
     public async Task<OperationResult<string>> RegistrarAsync(Usuario usuario, string senha)
     {
         var existente = await _unitOfWork.UsuarioRepository
-            .GetByCondition(u => 
-                (usuario.ClienteId.HasValue && u.ClienteId == usuario.ClienteId) ||
+            .GetByCondition(u =>
                 u.Email.ToLower() == usuario.Email.ToLower()
             )
             .FirstOrDefaultAsync();
 
         if (existente != null)
         {
-            if (usuario.ClienteId.HasValue && existente.ClienteId == usuario.ClienteId)
-                return OperationResult<string>.CreateFailure("Já existe um usuário vinculado a este cliente.");
-
             if (existente.Email.ToLower() == usuario.Email.ToLower())
                 return OperationResult<string>.CreateFailure("Email já cadastrado.");
         }
@@ -85,10 +81,7 @@ public class AuthService : IAuthService
             new Claim(ClaimTypes.Name, usuario.Nome),
             new Claim(ClaimTypes.Role, usuario.Role.ToString())
         };
-
-        if (usuario.ClienteId.HasValue)
-            claims.Add(new Claim("ClienteId", usuario.ClienteId.Value.ToString()));
-
+        
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

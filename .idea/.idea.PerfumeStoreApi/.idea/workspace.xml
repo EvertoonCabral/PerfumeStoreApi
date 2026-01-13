@@ -11,8 +11,14 @@
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioRegisterDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioRegisterDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Cliente.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Cliente.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Usuario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/UsuarioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/UsuarioRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +241,7 @@
       <workItem from="1768179200863" duration="1081000" />
       <workItem from="1768185438148" duration="3365000" />
       <workItem from="1768235540259" duration="696000" />
-      <workItem from="1768328007027" duration="5206000" />
+      <workItem from="1768328007027" duration="7416000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ajustado nomeclatura dos endpoints de venda">
       <option name="closed" value="true" />
@@ -253,7 +259,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768332537902</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: ajustado README.md e subindo arquivos docker">
+      <option name="closed" value="true" />
+      <created>1768334014870</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1768334014870</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +290,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="fix: ajustado nomeclatura dos endpoints de venda" />
     <MESSAGE value="feat: criado dockerfile e dockercompose" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: criado dockerfile e dockercompose" />
+    <MESSAGE value="feat: ajustado README.md e subindo arquivos docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: ajustado README.md e subindo arquivos docker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -293,19 +308,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs</url>
-          <line>27</line>
-          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Controllers\AuthController.cs" containingFunctionPresentation="Method 'Register'">
-            <startOffsets>
-              <option value="723" />
-            </startOffsets>
-            <endOffsets>
-              <option value="750" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

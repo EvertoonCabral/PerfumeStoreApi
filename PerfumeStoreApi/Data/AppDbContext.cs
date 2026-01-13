@@ -13,17 +13,13 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
-        modelBuilder.Entity<Usuario>()
-            .HasOne(u => u.Cliente)
-            .WithOne(c => c.Usuario)
-            .HasForeignKey<Usuario>(u => u.ClienteId)
-            .OnDelete(DeleteBehavior.Restrict);
 
+        // Usuario
         modelBuilder.Entity<Usuario>()
             .HasIndex(u => u.Email)
             .IsUnique();
-        
+
+        // Produto
         modelBuilder.Entity<Produto>()
             .Property(p => p.PrecoCompra)
             .HasPrecision(10, 2);
@@ -32,33 +28,35 @@ public class AppDbContext : DbContext
             .Property(p => p.PrecoVenda)
             .HasPrecision(10, 2);
 
+        // Pagamento
         modelBuilder.Entity<Pagamento>()
             .Property(p => p.ValorPago)
             .HasPrecision(10, 2);
 
+        // Venda
         modelBuilder.Entity<Venda>()
             .Property(v => v.ValorTotal)
             .HasPrecision(10, 2);
-        
-        
+
+        // Seed Estoque
         modelBuilder.Entity<Estoque>().HasData(
             new Estoque
             {
                 Id = 1,
                 Nome = "Estoque de Novos",
                 Descricao = "Produtos novos",
-                DataCriacao = new DateTime(2025, 7, 12, 0, 0, 0) // valor fixo
+                DataCriacao = new DateTime(2025, 7, 12)
             },
             new Estoque
             {
                 Id = 2,
                 Nome = "Estoque de Usados",
                 Descricao = "Produtos seminovos ou usados",
-                DataCriacao = new DateTime(2025, 7, 12, 0, 0, 0) // valor fixo
+                DataCriacao = new DateTime(2025, 7, 12)
             }
         );
-        
     }
+
 
 
     public DbSet<Cliente> Clientes { get; set; }

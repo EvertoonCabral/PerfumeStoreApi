@@ -21,9 +21,6 @@ public class Usuario
 
     public DateTime DataCadastro { get; set; } = DateTime.Now;
 
-    public int? ClienteId { get; set; }
-
-    public virtual Cliente? Cliente { get; set; }
     
     
 }

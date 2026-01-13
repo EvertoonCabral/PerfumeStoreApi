@@ -288,9 +288,6 @@ namespace PerfumeStoreApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ClienteId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
@@ -314,10 +311,6 @@ namespace PerfumeStoreApi.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClienteId")
-                        .IsUnique()
-                        .HasFilter("[ClienteId] IS NOT NULL");
 
                     b.HasIndex("Email")
                         .IsUnique();
@@ -420,16 +413,6 @@ namespace PerfumeStoreApi.Migrations
                     b.Navigation("Venda");
                 });
 
-            modelBuilder.Entity("PerfumeStoreApi.Models.Usuario", b =>
-                {
-                    b.HasOne("PerfumeStoreApi.Models.Cliente", "Cliente")
-                        .WithOne("Usuario")
-                        .HasForeignKey("PerfumeStoreApi.Models.Usuario", "ClienteId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Cliente");
-                });
-
             modelBuilder.Entity("PerfumeStoreApi.Models.Venda", b =>
                 {
                     b.HasOne("PerfumeStoreApi.Models.Cliente", "Cliente")
@@ -443,8 +426,6 @@ namespace PerfumeStoreApi.Migrations
 
             modelBuilder.Entity("PerfumeStoreApi.Models.Cliente", b =>
                 {
-                    b.Navigation("Usuario");
-
                     b.Navigation("Vendas");
                 });
 

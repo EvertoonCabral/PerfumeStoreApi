@@ -25,18 +25,10 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(UsuarioRegisterDto dto)
     {
-        if (dto.ClienteId.HasValue)
-        {
-            var cliente = await _unitOfWork.ClienteRepository.GetById(dto.ClienteId.Value);
-            if (cliente == null)
-                return BadRequest("Cliente não encontrado");
-        }
-        
         var usuario = new Usuario
         {
             Nome = dto.Nome,
             Email = dto.Email,
-            ClienteId = dto.ClienteId 
         };
 
         var result = await _authService.RegistrarAsync(usuario, dto.Senha);
