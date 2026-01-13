@@ -11,12 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/PerfumeStoreApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +43,7 @@
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Data/AppDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioLoginDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/everton.cabral/ProjetosPessoais/PerfumeStoreApi/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Migrations/AppDbContextModelSnapshot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Models/Usuario.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/everton.cabral/ProjetosPessoais/PerfumeStoreApi/PerfumeStoreApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
@@ -65,6 +62,7 @@
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/UnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/everton.cabral/ProjetosPessoais/PerfumeStoreApi/PerfumeStoreApi/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/everton.cabral/ProjetosPessoais/PerfumeStoreApi/PerfumeStoreApi/appsettings.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
@@ -237,7 +235,7 @@
       <workItem from="1768179200863" duration="1081000" />
       <workItem from="1768185438148" duration="3365000" />
       <workItem from="1768235540259" duration="696000" />
-      <workItem from="1768328007027" duration="3848000" />
+      <workItem from="1768328007027" duration="5206000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ajustado nomeclatura dos endpoints de venda">
       <option name="closed" value="true" />
@@ -247,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767977885218</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: criado dockerfile e dockercompose">
+      <option name="closed" value="true" />
+      <created>1768332537902</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1768332537902</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,7 +275,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="fix: ajustado nomeclatura dos endpoints de venda" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: ajustado nomeclatura dos endpoints de venda" />
+    <MESSAGE value="feat: criado dockerfile e dockercompose" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: criado dockerfile e dockercompose" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

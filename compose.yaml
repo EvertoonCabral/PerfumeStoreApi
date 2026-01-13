@@ -1,0 +1,45 @@
+﻿version: "3.9"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver-perfume
+    restart: unless-stopped
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "SenhaForte123!"
+    ports:
+      - "1445:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - perfumestore-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: perfumestore-api
+    depends_on:
+      - sqlserver
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+
+      ConnectionStrings__DefaultConnection: >
+        Server=sqlserver,1433;
+        Database=PerfumeStoreApi;
+        User Id=sa;
+        Password=SenhaForte123!;
+        TrustServerCertificate=True;
+    ports:
+      - "5000:8080"
+    networks:
+      - perfumestore-network
+
+volumes:
+  sqlserver_data:
+
+networks:
+  perfumestore-network:
+    driver: bridge
