@@ -296,7 +296,7 @@ namespace PerfumeStoreApi.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -318,6 +318,9 @@ namespace PerfumeStoreApi.Migrations
                     b.HasIndex("ClienteId")
                         .IsUnique()
                         .HasFilter("[ClienteId] IS NOT NULL");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Usuarios");
                 });
