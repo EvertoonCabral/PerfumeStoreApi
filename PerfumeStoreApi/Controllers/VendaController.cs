@@ -5,6 +5,7 @@ using PerfumeStoreApi.Context.Dtos;
 using PerfumeStoreApi.Context.Dtos.ItemVenda;
 using PerfumeStoreApi.Context.Dtos.Pagamento;
 using PerfumeStoreApi.Data.Dtos;
+using PerfumeStoreApi.Data.Dtos.Venda;
 using PerfumeStoreApi.Service;
 using PerfumeStoreApi.Service.Interfaces;
 
@@ -21,19 +22,18 @@ public class VendaController : ControllerBase
     {
         _vendaService = vendaService;
     }
-
     [HttpPost("CadastrarVenda")]
-    public async Task<ActionResult<VendaResponse>> CadastrarVendaAsync([FromBody] CreateVendaRequest request)
+    public async Task<IActionResult> CadastrarVendaAsync(CreateVendaRequest request)
     {
-        //validar o metodo de criar venda, esta com mais de um commit, gerando possibilidade de alterar os dados em um momento do metodo e depois estourar uma expection e so meio processo ser salvo
-        var resultado = await _vendaService.CriarVendaAsync(request);
-
-        if (!resultado.Success)
+        try
         {
-            return BadRequest(resultado.Errors);
+            await _vendaService.CriarVendaAsync(request);
+            return Ok();
         }
-
-        return Ok(resultado.Data);
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 
     [HttpGet("ObterVendaPorId/{id}")]

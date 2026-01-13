@@ -1,6 +1,7 @@
 using PerfumeStoreApi.Context.Dtos.ItemVenda;
+using PerfumeStoreApi.Data.Dtos.ItemVenda;
 
-namespace PerfumeStoreApi.Context.Dtos;
+namespace PerfumeStoreApi.Data.Dtos.Venda;
 
 public class CreateVendaRequest
 {

@@ -1,4 +1,4 @@
-namespace PerfumeStoreApi.Context.Dtos.ItemVenda;
+namespace PerfumeStoreApi.Data.Dtos.ItemVenda;
 
 public class CreateItemVendaRequest
 {

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using PerfumeStoreApi.Context.Dtos.ItemVenda;
+using PerfumeStoreApi.Data.Dtos.ItemVenda;
 
 namespace PerfumeStoreApi.Context.Dtos;
 

@@ -2,6 +2,8 @@ using PerfumeStoreApi.Context.Dtos;
 using PerfumeStoreApi.Context.Dtos.ItemVenda;
 using PerfumeStoreApi.Context.Dtos.Pagamento;
 using PerfumeStoreApi.Data.Dtos;
+using PerfumeStoreApi.Data.Dtos.ItemVenda;
+using PerfumeStoreApi.Data.Dtos.Venda;
 using PerfumeStoreApi.Models;
 using PerfumeStoreApi.Models.Enums;
 

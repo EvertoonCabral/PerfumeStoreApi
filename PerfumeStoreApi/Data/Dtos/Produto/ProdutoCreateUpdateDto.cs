@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PerfumeStoreApi.Context.Dtos.ProdutoDTO;
+namespace PerfumeStoreApi.Data.Dtos.Produto;
 
 public class ProdutoCreateUpdateDto
 {
