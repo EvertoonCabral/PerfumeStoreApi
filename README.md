@@ -68,7 +68,7 @@ docker-compose up --build
 Recomendado quando houver mudanças no Dockerfile, dependências ou migrations
 
 ````
-docker-compose up -d --build --no-cache
+docker-compose up -d --build --force-recreate
 ````
 
 ### 🛑 Parar os containers
