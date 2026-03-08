@@ -1,4 +1,6 @@
-using Microsoft.AspNetCore.Http.HttpResults;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PerfumeStoreApi.Data.Dtos.Usuario;
 using PerfumeStoreApi.Models;
@@ -23,8 +25,11 @@ public class AuthController : ControllerBase
 
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(UsuarioRegisterDto dto)
+    public async Task<IActionResult> Register([FromBody] UsuarioRegisterDto dto)
     {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
         var usuario = new Usuario
         {
             Nome = dto.Nome,
@@ -40,8 +45,11 @@ public class AuthController : ControllerBase
     }
     
     [HttpPost("login")]
-    public async Task<IActionResult> Login(UsuarioLoginDto dto)
+    public async Task<IActionResult> Login([FromBody] UsuarioLoginDto dto)
     {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
         var result = await _authService.LoginAsync(dto.Email, dto.Senha);
 
         if (!result.Success)
@@ -49,5 +57,29 @@ public class AuthController : ControllerBase
 
         return Ok(result);
     }
-    
+
+    /// <summary>
+    /// Invalida o token JWT atual do usuário autenticado.
+    /// </summary>
+    /// <returns>Confirmação de logout.</returns>
+    [HttpPost("logout")]
+    [Authorize]
+    public IActionResult Logout()
+    {
+        var jti = User.FindFirstValue(JwtRegisteredClaimNames.Jti);
+        var expClaim = User.FindFirstValue(JwtRegisteredClaimNames.Exp);
+
+        if (string.IsNullOrEmpty(jti))
+            return BadRequest(new { message = "Token inválido." });
+
+        DateTimeOffset expiry;
+        if (long.TryParse(expClaim, out var expUnix))
+            expiry = DateTimeOffset.FromUnixTimeSeconds(expUnix);
+        else
+            expiry = DateTimeOffset.UtcNow.AddHours(2);
+
+        _authService.Logout(jti, expiry);
+
+        return Ok(new { message = "Logout realizado com sucesso." });
+    }
 }

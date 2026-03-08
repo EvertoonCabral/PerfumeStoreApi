@@ -17,8 +17,9 @@ public class ClienteCreateUpdateDto
     [Phone(ErrorMessage = "Formato de telefone inválido")]
     public string Telefone { get; set; }
 
+    [Required(ErrorMessage = "Email é obrigatório")]
     [EmailAddress(ErrorMessage = "Email inválido")]
-    public string? Email { get; set; }
+    public string Email { get; set; }
 
     public bool IsAtivo { get; set; } = true;
 

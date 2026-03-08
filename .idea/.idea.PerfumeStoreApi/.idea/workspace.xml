@@ -10,20 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ItemVenda/ItemVendaDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Venda/VendaResponseDetail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Venda/VendaResponseDetail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IVendaRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IVendaRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/VendaRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/VendaRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteCreateUpdateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Cliente/ClienteCreateUpdateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioLoginDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioLoginDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioRegisterDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioRegisterDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ClienteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/ClienteRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/UsuarioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/UsuarioRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/ClienteService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/ClienteService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,24 +60,33 @@
     <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Controllers/EstoqueController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Controllers/ProdutoController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Controllers/VendaController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Data/Dtos/Cliente/ClienteCreateUpdateDto.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioLoginDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioLoginDto.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioRegisterDto.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Data/Dtos/Venda/VendaResponseDetail.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Models/Usuario.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Models/Venda.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Repository/ClienteRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IMovimentacaoEstoqueRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IUsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Repository/Interface/IVendaRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Repository/MovimentacaoEstoqueRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Repository/UsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Repository/UsuarioRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Repository/VendaRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Service/AuthService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Service/AuthService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Service/ClienteService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Service/ClienteService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IAuthService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IClienteService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IEstoqueService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Service/VendaService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/IUnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/UnitOfWork/UnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/appsettings.json" root0="FORCE_HIGHLIGHTING" />
@@ -258,19 +261,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs</url>
-          <line>27</line>
-          <properties documentPath="C:\Users\Everton\RiderProjects\PerfumeStoreApi\PerfumeStoreApi\Controllers\AuthController.cs" containingFunctionPresentation="Method 'Register'">
-            <startOffsets>
-              <option value="723" />
-            </startOffsets>
-            <endOffsets>
-              <option value="750" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -12,9 +12,10 @@ namespace PerfumeStoreApi.Repository;
 public class ClienteRepository : Repository<Cliente>, IClienteRepository
 {
     private readonly IMapper _mapper;
-    public ClienteRepository(AppDbContext context) : base(context)
+
+    public ClienteRepository(AppDbContext context, IMapper mapper) : base(context)
     {
-        
+        _mapper = mapper;
     }
 
 
@@ -25,6 +26,7 @@ public class ClienteRepository : Repository<Cliente>, IClienteRepository
             .FirstOrDefaultAsync(c => c.Id == id);
         return _mapper.Map<ClienteDetalhesDto>(cliente);
     }
+
     public async Task<Cliente?> GetByCpfAsync(string cpf)
     {
         if (string.IsNullOrWhiteSpace(cpf))

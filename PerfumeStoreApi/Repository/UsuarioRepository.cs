@@ -13,7 +13,7 @@ namespace PerfumeStoreApi.Repository
         public async Task<Usuario?> GetByEmailAsync(string email)
         {
             return await _context.Usuarios
-                .FirstOrDefaultAsync(u => u.Email == email);
+                .FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
         }
     }
 }

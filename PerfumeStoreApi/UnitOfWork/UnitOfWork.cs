@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore.Storage;
 using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Data;
@@ -15,19 +16,21 @@ public class UnitOfWork : IUnitOfWork
     private IItemEstoqueRepository _itemEstoqueRepo;
     private IMovimentacaoEstoqueRepository _movimentacaoEstoqueRepo;
     private IUsuarioRepository _usuarioRepo;
-    private readonly AppDbContext _context; 
+    private readonly AppDbContext _context;
+    private readonly IMapper _mapper;
 
 
-    public UnitOfWork(AppDbContext context)
+    public UnitOfWork(AppDbContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     public IClienteRepository ClienteRepository
     {
         get
         {
-            return _clienteRepo ??= new ClienteRepository(_context);
+            return _clienteRepo ??= new ClienteRepository(_context, _mapper);
         }
      
     }

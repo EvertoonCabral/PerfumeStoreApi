@@ -17,12 +17,14 @@ public class AuthService : IAuthService
     
     private readonly IUnitOfWork _unitOfWork;
     private readonly IConfiguration _config;
+    private readonly ITokenBlacklistService _blacklist;
 
 
-    public AuthService(IUnitOfWork unitOfWork, IConfiguration config)
+    public AuthService(IUnitOfWork unitOfWork, IConfiguration config, ITokenBlacklistService blacklist)
     {
         _unitOfWork = unitOfWork;
         _config = config;
+        _blacklist = blacklist;
     }
 
 
@@ -59,6 +61,11 @@ public class AuthService : IAuthService
         var token =  GerarToken(usuario);
         return OperationResult<string>.CreateSuccess(token, "Login realizado com sucesso.");
     }
+    public void Logout(string jti, DateTimeOffset tokenExpiry)
+    {
+        _blacklist.RevokeToken(jti, tokenExpiry);
+    }
+
     private void CriarSenhaHash(string senha, out byte[] hash, out byte[] salt)
     {
         using var hmac = new HMACSHA512();
@@ -75,8 +82,11 @@ public class AuthService : IAuthService
     
     private string GerarToken(Usuario usuario)
     {
+        var jti = Guid.NewGuid().ToString();
+
         var claims = new List<Claim>
         {
+            new Claim(JwtRegisteredClaimNames.Jti, jti),
             new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
             new Claim(ClaimTypes.Name, usuario.Nome),
             new Claim(ClaimTypes.Role, usuario.Role.ToString())
@@ -89,7 +99,7 @@ public class AuthService : IAuthService
             issuer: _config["Jwt:Issuer"],
             audience: _config["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.Now.AddHours(2),
+            expires: DateTime.UtcNow.AddHours(2),
             signingCredentials: creds
         );
 

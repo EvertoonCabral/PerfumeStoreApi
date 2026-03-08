@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context.Dtos;
 using PerfumeStoreApi.Data.Dtos;
 using PerfumeStoreApi.Data.Dtos.Cliente;
@@ -25,28 +26,50 @@ public class ClienteService : IClienteService
 
     public async Task<OperationResult<PagedResult<ClienteDto>>> GetClientesAsync(ClienteFiltroDto filtros)
     {
-
         try
         {
-            if (filtros.PageNumber  < 1 ) filtros.PageNumber = 1;
-            if (filtros.PageSize < 1|| filtros.PageSize > 100) filtros.PageSize = 10;
-            
-            var clientes = await _unitOfWork.ClienteRepository.GetAll();
-            var clientesDto = _mapper.Map<List<ClienteDto>>(clientes);
+            if (filtros.PageNumber < 1) filtros.PageNumber = 1;
+            if (filtros.PageSize < 1 || filtros.PageSize > 100) filtros.PageSize = 10;
 
-            var clientesPaginados = clientesDto
+            var query = (await _unitOfWork.ClienteRepository.GetAll());
+
+            if (!string.IsNullOrWhiteSpace(filtros.Nome))
+                query = query.Where(c => c.Nome.Contains(filtros.Nome));
+
+            if (!string.IsNullOrWhiteSpace(filtros.Cpf))
+                query = query.Where(c => c.Cpf == filtros.Cpf);
+
+            if (!string.IsNullOrWhiteSpace(filtros.Email))
+                query = query.Where(c => c.Email.Contains(filtros.Email));
+
+            if (filtros.IsAtivo.HasValue)
+                query = query.Where(c => c.IsAtivo == filtros.IsAtivo.Value);
+
+            if (filtros.DataCadastroInicio.HasValue)
+                query = query.Where(c => c.DataCadastro >= filtros.DataCadastroInicio.Value);
+
+            if (filtros.DataCadastroFim.HasValue)
+                query = query.Where(c => c.DataCadastro <= filtros.DataCadastroFim.Value);
+
+            var totalCount = await query.CountAsync();
+
+            var clientes = await query
+                .OrderBy(c => c.Nome)
                 .Skip((filtros.PageNumber - 1) * filtros.PageSize)
                 .Take(filtros.PageSize)
-                .ToList();
+                .ToListAsync();
+
+            var clientesDto = _mapper.Map<List<ClienteDto>>(clientes);
 
             var resultado = new PagedResult<ClienteDto>
             {
-                Items = clientesPaginados,
-                TotalCount = clientesDto.Count,
+                Items = clientesDto,
+                TotalCount = totalCount,
                 PageNumber = filtros.PageNumber,
                 PageSize = filtros.PageSize
             };
-            _logger.LogInformation("Busca de clientes realizada. Total: {TotalCount}", clientesDto.Count);
+
+            _logger.LogInformation("Busca de clientes realizada. Total: {TotalCount}", totalCount);
             return OperationResult<PagedResult<ClienteDto>>.CreateSuccess(resultado);
         }
         catch (Exception ex)
@@ -54,7 +77,6 @@ public class ClienteService : IClienteService
             _logger.LogError(ex, "Erro ao buscar clientes");
             return OperationResult<PagedResult<ClienteDto>>.CreateFailure("Erro interno ao buscar clientes");
         }
-        
     }
 
    public async Task<OperationResult<ClienteDto>> GetClienteByIdAsync(int id)
