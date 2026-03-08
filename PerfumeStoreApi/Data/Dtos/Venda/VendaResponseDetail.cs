@@ -1,3 +1,4 @@
+using PerfumeStoreApi.Data.Dtos.ItemVenda;
 using PerfumeStoreApi.Models.Enums;
 
 namespace PerfumeStoreApi.Context.Dtos;
@@ -12,4 +13,4 @@ public class VendaResponseDetail
     public StatusVenda Status { get; set; }
     public string? Observacoes { get; set; }
     public string? UsuarioVendedor { get; set; }
-}
+    public List<ItemVendaDto> ItensVenda { get; set; }}

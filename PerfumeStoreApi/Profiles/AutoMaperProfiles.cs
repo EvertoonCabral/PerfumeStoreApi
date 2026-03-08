@@ -50,7 +50,7 @@ public class AutoMaperProfiles : Profile
                         .ForMember(dest => dest.DataVenda, opt => opt.Ignore())
                         .ForMember(dest => dest.Status, opt => opt.Ignore())
                         .ForMember(dest => dest.Cliente, opt => opt.Ignore())
-                        .ForMember(dest => dest.Itens, opt => opt.Ignore())
+                        .ForMember(dest => dest.ItensVenda, opt => opt.Ignore())
                         .ForMember(dest => dest.Pagamentos, opt => opt.Ignore());
 
                 CreateMap<CreateItemVendaRequest, ItemVenda>()

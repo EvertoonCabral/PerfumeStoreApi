@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context.Dtos;
-using PerfumeStoreApi.Context.Dtos.ItemVenda;
+using Microsoft.EntityFrameworkCore; 
 using PerfumeStoreApi.Context.Dtos.Pagamento;
 using PerfumeStoreApi.Data.Dtos;
 using PerfumeStoreApi.Data.Dtos.ItemVenda;
@@ -28,22 +28,40 @@ public class VendaService : IVendaService
     }
 
     
+
     public async Task<OperationResult<VendaResponseDetail>> ObterVendaPorIdAsync(int id)
     {
         var venda = await _unitOfWork.VendaRepository
-            .GetByCondition(v => v.Id == id)
-            .Include(v => v.Cliente)
-            .Include(v => v.Itens)
+            .Query()
+            .Include(v => v.ItensVenda)
             .ThenInclude(i => i.Produto)
-            .Include(v => v.Pagamentos)
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(v => v.Id == id);
 
         if (venda == null)
             return OperationResult<VendaResponseDetail>.CreateFailure("Venda não encontrada");
 
-        var vendaResponse = _mapper.Map<VendaResponseDetail>(venda);
+        var response = new VendaResponseDetail
+        {
+            Id = venda.Id,
+            ClienteId = venda.ClienteId,
+            DataVenda = venda.DataVenda,
+            ValorTotal = venda.ValorTotal,
+            Desconto = venda.Desconto,
+            Status = venda.Status,
+            Observacoes = venda.Observacoes,
+            UsuarioVendedor = venda.UsuarioVendedor,
+            ItensVenda = venda.ItensVenda.Select(i => new ItemVendaDto
+            {
+                Id = i.Id,
+                ProdutoId = i.ProdutoId,
+                NomeProduto = i.Produto?.Nome,
+                Quantidade = i.Quantidade,
+                PrecoUnitario = i.PrecoUnitario,
+                Subtotal = i.Subtotal
+            }).ToList()
+        };
 
-        return OperationResult<VendaResponseDetail>.CreateSuccess(vendaResponse);
+        return OperationResult<VendaResponseDetail>.CreateSuccess(response);
     }
 
 
@@ -117,7 +135,7 @@ public class VendaService : IVendaService
                     PrecoUnitario = precoUnitario
                 };
 
-                venda.Itens.Add(itemVenda);
+                venda.ItensVenda.Add(itemVenda);
                 valorBruto += itemVenda.Subtotal;
             }
 
@@ -135,7 +153,7 @@ public class VendaService : IVendaService
             await transaction.CommitAsync();
             
             // 7. Baixar estoque para cada item
-            foreach (var item in venda.Itens)
+            foreach (var item in venda.ItensVenda)
             {
                 await _estoqueService.MovimentarEstoqueAsync(
                     item.ProdutoId,
@@ -157,13 +175,12 @@ public class VendaService : IVendaService
             throw;
         }
     }
-
     public async Task<OperationResult<VendaResponseDetail>> FinalizarVendaAsync(int vendaId, List<CreatePagamentoRequest> pagamentos)
     {
         var venda = await _unitOfWork.VendaRepository
             .GetByCondition(v => v.Id == vendaId)
             .Include(v => v.Pagamentos)
-            .Include(v => v.Itens)
+            .Include(v => v.ItensVenda)
             .FirstOrDefaultAsync();
 
         if (venda == null)
@@ -224,7 +241,7 @@ public class VendaService : IVendaService
     {
         var venda = await _unitOfWork.VendaRepository
             .GetByCondition(v => v.Id == vendaId)
-            .Include(v => v.Itens)
+            .Include(v => v.ItensVenda)
             .ThenInclude(i => i.Produto)
             .Include(v => v.Pagamentos)
             .FirstOrDefaultAsync();
@@ -246,7 +263,7 @@ public class VendaService : IVendaService
             // Estornar estoque apenas se a venda estava finalizada
             if (venda.Status == StatusVenda.Finalizada)
             {
-                foreach (var item in venda.Itens)
+                foreach (var item in venda.ItensVenda)
                 {
                     // Encontrar o estoque onde foi feita a baixa (buscar pela movimentação)
                     var movimentacao = await _unitOfWork.MovimentacaoEstoqueRepository
@@ -309,7 +326,7 @@ public class VendaService : IVendaService
 
         var vendas = await query
             .Include(v => v.Cliente)
-            .Include(v => v.Itens)
+            .Include(v => v.ItensVenda)
             .ThenInclude(i => i.Produto)
             .Include(v => v.Pagamentos)
             .OrderByDescending(v => v.DataVenda)

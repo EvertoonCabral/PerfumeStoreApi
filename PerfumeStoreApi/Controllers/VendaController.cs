@@ -23,12 +23,15 @@ public class VendaController : ControllerBase
         _vendaService = vendaService;
     }
     [HttpPost("CadastrarVenda")]
-    public async Task<IActionResult> CadastrarVendaAsync(CreateVendaRequest request)
+    public async Task<IActionResult> CadastrarVendaAsync([FromBody] CreateVendaRequest request)
     {
         try
         {
-            await _vendaService.CriarVendaAsync(request);
-            return Ok();
+            var resultado = await _vendaService.CriarVendaAsync(request);
+            if (!resultado.Success)
+                return BadRequest(new { message = resultado.Errors });
+
+            return CreatedAtAction(nameof(ObterVendaPorIdAsync), new { id = resultado.Data!.Id }, resultado.Data);
         }
         catch (InvalidOperationException ex)
         {
@@ -60,9 +63,12 @@ public class VendaController : ControllerBase
     }
 
     [HttpPut("CancelarVenda")]
-    public async Task<ActionResult<VendaResponse>> CancelarVendaAsync(int id, string motivo, string? usuarioResponsavel)
+    public async Task<ActionResult<VendaResponse>> CancelarVendaAsync(
+        [FromQuery] int id,
+        [FromQuery] string motivo,
+        [FromQuery] string? usuarioResponsavel = null)
     {
-        var result = await _vendaService.CancelarVendaAsync(id, motivo, "ADMIN");
+        var result = await _vendaService.CancelarVendaAsync(id, motivo, usuarioResponsavel);
 
         if (!result.Success)
         {
@@ -99,8 +105,8 @@ public class VendaController : ControllerBase
     /// <returns>Retorna o resultado da operação com os dados da venda finalizada.</returns>
     [HttpPut("FinalizarVenda")]
     public async Task<ActionResult<OperationResult<VendaResponse>>> FinalizarVendaAsync(
-        int vendaId,
-        List<CreatePagamentoRequest> pagamentos)
+        [FromQuery] int vendaId,
+        [FromBody] List<CreatePagamentoRequest> pagamentos)
     {
         var result = await _vendaService.FinalizarVendaAsync(vendaId, pagamentos);
 

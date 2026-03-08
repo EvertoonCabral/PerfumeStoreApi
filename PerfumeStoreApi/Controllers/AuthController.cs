@@ -44,7 +44,7 @@ public class AuthController : ControllerBase
         if (!result.Success)
             return BadRequest(result);
         
-        return Ok(result);
+        return StatusCode(StatusCodes.Status201Created, result);
     }
     
     [HttpPost("login")]

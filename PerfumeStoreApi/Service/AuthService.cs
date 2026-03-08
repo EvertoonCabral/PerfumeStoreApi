@@ -58,7 +58,7 @@ public class AuthService : IAuthService
     {
         var usuario = await _unitOfWork.UsuarioRepository.GetByEmailAsync(email);
         if (usuario == null || !VerificarSenhaHash(senha, usuario.SenhaHash, usuario.SenhaSalt))
-            OperationResult<string>.CreateFailure("Credenciais inválidas.");
+            return OperationResult<string>.CreateFailure("Credenciais inválidas.");
 
         var token =  GerarToken(usuario);
         return OperationResult<string>.CreateSuccess(token, "Login realizado com sucesso.");

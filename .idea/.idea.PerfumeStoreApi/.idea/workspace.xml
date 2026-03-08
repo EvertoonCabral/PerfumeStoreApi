@@ -10,15 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c56aa1-edcb-4c9b-8ad9-dd8d9a32c18c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ItemVenda/ItemVendaDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PerfumeStoreApi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/EstoqueController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/ProdutoController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Controllers/VendaController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ItemVenda/CreateItemVendaRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/ItemVenda/CreateItemVendaRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Produto/ProdutoCreateUpdateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Produto/ProdutoCreateUpdateDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Venda/CreateVendaRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Venda/CreateVendaRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Venda/ValidarEstoqueRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Venda/ValidarEstoqueRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Venda/VendaResponseDetail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Venda/VendaResponseDetail.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Models/Venda.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IVendaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IVendaService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IVendaRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IVendaRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Repository/VendaRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Repository/VendaRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PerfumeStoreApi/Service/VendaService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,15 +61,25 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a3a2943740096e0fc472456147a4ca9c22db1be62257205bbba9f0e648c0/DatabaseFacade.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fb367341658aaedd7de424d4c9189db33c4387e268dcc4011918569442ab12/AsyncTaskMethodBuilderT.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/AuthController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Controllers/AuthController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Controllers/ClienteController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Controllers/EstoqueController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Controllers/ProdutoController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Controllers/VendaController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Data/Dtos/Usuario/UsuarioLoginDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Models/Usuario.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Models/Venda.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Profiles/AutoMaperProfiles.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IMovimentacaoEstoqueRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Repository/Interface/IUsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Repository/Interface/IVendaRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Repository/MovimentacaoEstoqueRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Repository/UsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Repository/VendaRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Service/AuthService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everton/RiderProjects/PerfumeStoreApi/PerfumeStoreApi/Service/AuthService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Service/ClienteService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IAuthService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PerfumeStoreApi/Service/Interfaces/IClienteService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -185,6 +199,8 @@
       <workItem from="1768179200863" duration="1081000" />
       <workItem from="1768185438148" duration="3365000" />
       <workItem from="1768235540259" duration="696000" />
+      <workItem from="1768269034938" duration="3100000" />
+      <workItem from="1772942055857" duration="1723000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ajustado nomeclatura dos endpoints de venda">
       <option name="closed" value="true" />
@@ -194,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767977885218</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: alterações de imports">
+      <option name="closed" value="true" />
+      <created>1768269070830</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1768269070830</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +240,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="fix: ajustado nomeclatura dos endpoints de venda" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: ajustado nomeclatura dos endpoints de venda" />
+    <MESSAGE value="feat: alterações de imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: alterações de imports" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

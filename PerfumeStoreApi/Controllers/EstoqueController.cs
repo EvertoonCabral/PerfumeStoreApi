@@ -25,7 +25,7 @@ public class EstoqueController : ControllerBase
         try
         {
             var estoque = await _estoqueService.CriarEstoqueAsync(request);
-            return Ok(estoque);
+            return CreatedAtAction(nameof(ObterEstoquePorId), new { id = estoque.Id }, estoque);
         }
         catch (InvalidOperationException ex)
         {

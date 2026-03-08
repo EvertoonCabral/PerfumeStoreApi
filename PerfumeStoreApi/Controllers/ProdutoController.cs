@@ -70,7 +70,7 @@ public class ProdutoController : ControllerBase
     {
         var novoProduto = await _produtoService.CriarProdutoAsync(produto);
         
-        return Ok(novoProduto);
+        return CreatedAtAction(nameof(GetProduto), new { id = novoProduto.Id }, novoProduto);
     }
 
     [HttpDelete("{id}")]

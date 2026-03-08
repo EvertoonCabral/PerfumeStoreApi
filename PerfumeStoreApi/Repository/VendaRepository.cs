@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PerfumeStoreApi.Context;
 using PerfumeStoreApi.Data;
 using PerfumeStoreApi.Models;
@@ -8,6 +9,6 @@ namespace PerfumeStoreApi.Repository;
 
 public class VendaRepository(AppDbContext context) : Repository<Venda>(context), IVendaRepository
 {
-
-    private readonly IMapper _mapper;
+    public IQueryable<Venda> Query()
+        => _context.Set<Venda>().AsNoTracking();
 }
