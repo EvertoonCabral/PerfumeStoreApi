@@ -20,6 +20,4 @@ public class Cliente
     public DateTime DataCadastro { get; set; } = DateTime.Now; // Novo campo
     public virtual ICollection<Venda> Vendas { get; set; }
     
-    public virtual Usuario? Usuario { get; set; }
-
 }
